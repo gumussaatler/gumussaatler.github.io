@@ -1,0 +1,1747 @@
+<!doctype html>
+<html lang="tr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex">
+<meta name="rating" content="adult">
+<title>Gümüş Saatler</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400;0,6..96,600;1,6..96,400;1,6..96,500&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;1,6..72,400&family=IBM+Plex+Mono:wght@400;500&family=Comic+Neue:wght@700&family=Anton&display=swap">
+<style>
+  /* Layout: tek sütun gece okuma defteri. Solda dar bir saat şeridi (tarih / okuma süresi), sağda metin. Dark-first. */
+  :root {
+    --ink: #17121a;
+    --paper: #201a24;
+    --text: #e9e4e6;
+    --muted: #9c93a0;
+    --silver: #c7c3cc;
+    --accent: #d39a8f;
+    --rule: #3a3140;
+    --neon: #ff5fa2;
+    --neon-core: #ffe6f1;
+    --neon-far: rgba(255, 60, 140, .45);
+    --display: "Bodoni Moda", "Didot", "Bodoni 72", Georgia, serif;
+    --body: "Newsreader", "Iowan Old Style", Georgia, serif;
+    --mono: "IBM Plex Mono", ui-monospace, "SF Mono", Menlo, monospace;
+    color-scheme: dark;
+  }
+  @media (prefers-color-scheme: light) {
+    :root:not([data-theme="dark"]) {
+      --ink: #f3eff1; --paper: #ebe5e9; --text: #241c26; --muted: #6e6472;
+      --silver: #5b5361; --accent: #a4554a; --rule: #d6cdd3; color-scheme: light;
+      --neon: #e0408a; --neon-core: #7a1240; --neon-far: rgba(224, 64, 138, .22);
+    }
+  }
+  :root[data-theme="light"] {
+    --ink: #f3eff1; --paper: #ebe5e9; --text: #241c26; --muted: #6e6472;
+    --silver: #5b5361; --accent: #a4554a; --rule: #d6cdd3; color-scheme: light;
+    --neon: #e0408a; --neon-core: #7a1240; --neon-far: rgba(224, 64, 138, .22);
+  }
+
+  * { box-sizing: border-box; }
+  body {
+    background: var(--ink);
+    color: var(--text);
+    font-family: var(--body);
+    font-size: 1.1rem;
+    line-height: 1.7;
+    padding-block: 0 5rem;
+    padding-left: max(16px, env(safe-area-inset-left, 0px));
+    padding-right: max(16px, env(safe-area-inset-right, 0px));
+  }
+  a { color: inherit; }
+  a:focus-visible, button:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
+
+  .wrap { max-width: 46rem; margin: 0 auto; }
+
+  header.masthead {
+    display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between;
+    gap: .5rem 1.5rem;
+    padding-block: 1.4rem .9rem;
+    border-bottom: 1px solid var(--rule);
+  }
+  .brand { text-decoration: none; display: grid; gap: .15rem; }
+  .brand h1 {
+    font-family: var(--display); font-weight: 400; font-style: italic;
+    font-size: clamp(2rem, 6vw, 3rem); line-height: 1; margin: 0; letter-spacing: -.01em;
+    color: var(--neon-core);
+    text-shadow: 0 0 4px var(--neon), 0 0 14px var(--neon), 0 0 40px var(--neon-far), 0 0 80px var(--neon-far);
+    animation: flicker 7s infinite;
+  }
+  @keyframes flicker {
+    0%, 91%, 93.5%, 96.5%, 100% { opacity: 1; }
+    92% { opacity: .55; } 96% { opacity: .7; }
+  }
+  .byline {
+    font-family: var(--mono); font-size: .72rem; letter-spacing: .18em; text-transform: uppercase;
+    color: var(--silver);
+  }
+  .byline b { font-weight: 500; color: var(--text); }
+  .badge {
+    font-family: var(--mono); font-size: .72rem; letter-spacing: .12em;
+    border: 1px solid var(--accent); color: var(--accent); padding: .15rem .5rem; border-radius: 2px;
+  }
+
+  .intro { color: var(--muted); font-style: italic; max-width: 34rem; margin: 1.5rem 0 2.5rem; }
+
+  .toc { list-style: none; margin: 0; padding: 0; display: grid; }
+  .toc li { border-bottom: 1px solid var(--rule); }
+  .toc a {
+    display: grid; grid-template-columns: 7.5rem 1fr; gap: 1rem; padding: 1.25rem 0; text-decoration: none;
+  }
+  .toc .meta { font-family: var(--mono); font-size: .74rem; color: var(--muted); line-height: 1.6; padding-top: .45rem; font-variant-numeric: tabular-nums; }
+  .toc h2 { font-family: var(--display); font-weight: 400; font-size: 1.75rem; line-height: 1.15; margin: 0 0 .3rem; text-wrap: balance; }
+  .toc p { margin: 0; color: var(--muted); font-size: 1rem; line-height: 1.5; }
+  .toc a:hover h2 { color: var(--accent); }
+  @media (max-width: 520px) {
+    .toc a { grid-template-columns: 1fr; gap: .25rem; }
+    .toc .meta { padding-top: 0; }
+  }
+
+  article { padding-top: 2.5rem; }
+  .back { font-family: var(--mono); font-size: .75rem; letter-spacing: .1em; text-transform: uppercase; color: var(--muted); text-decoration: none; }
+  .back:hover { color: var(--accent); }
+  article h2 {
+    font-family: var(--display); font-weight: 400; font-style: italic;
+    font-size: clamp(2.2rem, 6vw, 3.2rem); line-height: 1.05; margin: 1.5rem 0 .75rem; text-wrap: balance;
+  }
+  .storymeta { font-family: var(--mono); font-size: .74rem; color: var(--muted); letter-spacing: .06em; margin-bottom: 2.5rem; }
+  .storymeta span + span::before { content: "·"; margin: 0 .6rem; }
+  .prose { max-width: 36rem; }
+  .prose p { margin: 0 0 1.15em; }
+  .prose p:first-child::first-letter {
+    font-family: var(--display); float: left; font-size: 3.6em; line-height: .85; padding: .08em .1em 0 0; color: var(--accent);
+  }
+  .prose hr { border: 0; text-align: center; margin: 2rem 0; }
+  .prose hr::after { content: "◆"; color: var(--silver); font-size: .7rem; letter-spacing: 1em; }
+  .signoff { font-family: var(--display); font-style: italic; color: var(--silver); margin-top: 2.5rem; }
+
+  footer { margin-top: 4rem; padding-top: 1.25rem; border-top: 1px solid var(--rule); font-family: var(--mono); font-size: .7rem; color: var(--muted); letter-spacing: .05em; }
+
+  .gate {
+    position: fixed; inset: 0; z-index: 20; background: var(--ink);
+    display: grid; place-items: center;
+    padding: 2rem max(16px, env(safe-area-inset-right, 0px)) 2rem max(16px, env(safe-area-inset-left, 0px));
+  }
+  .gate-box { max-width: 26rem; text-align: left; display: grid; gap: 1rem; }
+  .gate-box .h { font-family: var(--display); font-style: italic; font-size: 2.4rem; line-height: 1; margin: 0; }
+  .gate-box p { margin: 0; color: var(--muted); }
+  .gate-actions { display: flex; flex-wrap: wrap; gap: .75rem; margin-top: .5rem; }
+  .gate button {
+    font-family: var(--mono); font-size: .8rem; letter-spacing: .08em; padding: .7rem 1.1rem; cursor: pointer;
+    border-radius: 2px; border: 1px solid var(--accent); background: var(--accent); color: var(--ink);
+  }
+  .gate button.ghost { background: transparent; color: var(--muted); border-color: var(--rule); }
+  .gate .no { color: var(--accent); }
+
+  /* Müzik düğmesi */
+  .sound {
+    position: fixed; z-index: 15;
+    right: max(16px, env(safe-area-inset-right, 0px));
+    bottom: calc(16px + env(safe-area-inset-bottom, 0px));
+    display: flex; align-items: center; gap: .55rem;
+    font-family: var(--mono); font-size: .72rem; letter-spacing: .1em; text-transform: uppercase;
+    background: var(--paper); color: var(--silver); border: 1px solid var(--rule); border-radius: 999px;
+    padding: .55rem .95rem; cursor: pointer;
+  }
+  .sound:hover { color: var(--accent); border-color: var(--accent); }
+  .bars { display: inline-flex; gap: 2px; align-items: flex-end; height: 12px; }
+  .bars i { width: 2px; background: var(--accent); height: 3px; border-radius: 1px; }
+  .sound.on .bars i { animation: eq 1.4s ease-in-out infinite; }
+  .sound.on .bars i:nth-child(2) { animation-delay: .35s; }
+  .sound.on .bars i:nth-child(3) { animation-delay: .7s; }
+  @keyframes eq { 0%,100% { height: 3px; } 50% { height: 12px; } }
+  @media (prefers-reduced-motion: reduce) { .sound.on .bars i { animation: none; height: 8px; } }
+
+  /* Gökyüzü ve parıltılar */
+  .wrap { position: relative; z-index: 1; }
+  #sky { position: fixed; inset: 0; width: 100%; height: 100%; z-index: 0; pointer-events: none; }
+  #fx { position: fixed; inset: 0; width: 100%; height: 100%; z-index: 18; pointer-events: none; }
+
+  /* Perde */
+  .curtain { position: fixed; inset: 0; z-index: 19; display: flex; pointer-events: none; }
+  .curtain > div {
+    flex: 1; position: relative;
+    background:
+      linear-gradient(180deg, rgba(0,0,0,0) 70%, rgba(0,0,0,.45)),
+      repeating-linear-gradient(90deg, #3a0716 0 14px, #6b1130 14px 30px, #8a1a3d 30px 36px, #4d0a1f 36px 52px);
+    transition: transform 1.9s cubic-bezier(.7, 0, .2, 1);
+  }
+  .curtain > div::after {
+    content: ""; position: absolute; top: 0; left: 0; right: 0; height: 54px;
+    background: repeating-linear-gradient(90deg, #2a0510 0 22px, #3d0819 22px 44px);
+    border-bottom: 3px dotted #d8b36a;
+  }
+  .curtain .c-left { box-shadow: inset -24px 0 40px rgba(0,0,0,.5); }
+  .curtain .c-right { box-shadow: inset 24px 0 40px rgba(0,0,0,.5); }
+  .curtain.open .c-left { transform: translateX(-103%); }
+  .curtain.open .c-right { transform: translateX(103%); }
+
+  /* Rastgele hikaye */
+  .intro-row { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 1rem; margin: 1.5rem 0 2.5rem; }
+  .intro-row .intro { margin: 0; }
+  .dice {
+    font-family: var(--mono); font-size: .76rem; letter-spacing: .08em; text-transform: uppercase;
+    padding: .65rem 1rem; border-radius: 999px; cursor: pointer;
+    background: transparent; color: var(--neon); border: 1px solid var(--neon);
+    box-shadow: 0 0 12px var(--neon-far), inset 0 0 10px var(--neon-far);
+    transition: transform .2s ease;
+  }
+  .dice:hover { transform: rotate(-4deg) scale(1.05); }
+  .dice .d { display: inline-block; font-size: 1.1rem; vertical-align: -2px; margin-right: .35rem; }
+  .dice.roll .d { animation: roll .6s ease; }
+  @keyframes roll { to { transform: rotate(720deg); } }
+  .toc a { transition: transform .25s ease; }
+  .toc a:hover { transform: translateX(6px); }
+  .toc a:hover h2 { text-shadow: 0 0 18px var(--neon-far); }
+
+  /* Mehmet'e Sor: sayfanın kahramanı */
+  .hero { margin: 1.25rem 0 3.5rem; display: grid; gap: 1.4rem; }
+  .hero-head { display: flex; flex-wrap: wrap; align-items: flex-end; justify-content: space-between; gap: .75rem 1.5rem; }
+  .hero-title { font-family: var(--display); font-style: italic; font-weight: 400; font-size: clamp(2.8rem, 9vw, 5rem); line-height: .92; margin: 0; letter-spacing: -.015em; text-wrap: balance; }
+  .hero-title em { font-style: italic; color: var(--neon); text-shadow: 0 0 22px var(--neon-far); }
+  .hero-sub { margin: 0; color: var(--muted); max-width: 22rem; font-size: 1rem; line-height: 1.5; }
+  .chat {
+    position: relative; z-index: 2;
+    width: 100%; height: min(46rem, calc(100vh - 140px)); min-height: 28rem;
+    display: flex; flex-direction: column; overflow: hidden;
+    color: var(--text); border-radius: 24px; border: 1.5px solid transparent;
+    background:
+      linear-gradient(var(--paper), var(--paper)) padding-box,
+      linear-gradient(140deg, var(--neon), color-mix(in srgb, var(--neon) 10%, transparent) 38%, color-mix(in srgb, var(--accent) 10%, transparent) 62%, var(--accent)) border-box;
+    box-shadow: 0 40px 90px -30px var(--neon-far), 0 12px 34px rgba(0,0,0,.35);
+  }
+  .chat-head { padding: 1rem 1.25rem; display: flex; align-items: center; gap: .9rem; border-bottom: 1px solid var(--rule);
+    background: linear-gradient(180deg, color-mix(in srgb, var(--neon) 9%, transparent), transparent); }
+  .avatar { position: relative; flex: none; width: 3.8rem; height: 3.8rem; border-radius: 50%; display: grid; place-items: center;
+    font-family: var(--display); font-style: italic; font-size: 1.9rem; color: var(--neon-core);
+    background: radial-gradient(circle at 35% 30%, color-mix(in srgb, var(--neon) 55%, var(--ink)), var(--ink) 75%);
+    box-shadow: 0 0 0 2px var(--neon), 0 0 22px var(--neon-far); }
+  .avatar::after { content: ""; position: absolute; right: 1px; bottom: 2px; width: .8rem; height: .8rem; border-radius: 50%; background: #4fc27f; box-shadow: 0 0 0 3px var(--paper); }
+  .chat-head .who { font-family: var(--display); font-style: italic; font-weight: 400; font-size: clamp(2rem, 6vw, 3rem); line-height: .95; margin: 0; letter-spacing: -.01em; }
+  .chat-head .who em { color: var(--neon); text-shadow: 0 0 18px var(--neon-far); }
+  .chat-head .status { font-family: var(--mono); font-size: .66rem; color: var(--muted); letter-spacing: .1em; text-transform: uppercase; margin-top: .35rem; }
+  .chat-head .status b { color: #4fc27f; font-weight: 500; }
+  .msgs { flex: 1; overflow-y: auto; padding: 1.25rem; display: flex; flex-direction: column; gap: .75rem; scroll-behavior: smooth;
+    background:
+      radial-gradient(90% 60% at 0% 0%, color-mix(in srgb, var(--neon) 9%, transparent), transparent 70%),
+      radial-gradient(80% 60% at 100% 100%, color-mix(in srgb, var(--accent) 9%, transparent), transparent 70%); }
+  .msg { max-width: 82%; padding: .7rem 1rem; border-radius: 18px; font-size: 1.06rem; line-height: 1.45; animation: pop .28s ease-out; }
+  .msg.him { align-self: flex-start; border-bottom-left-radius: 5px;
+    background: color-mix(in srgb, var(--ink) 82%, var(--neon) 18%); border: 1px solid color-mix(in srgb, var(--neon) 30%, transparent); }
+  .msg.me { align-self: flex-end; border-bottom-right-radius: 5px; color: #fff;
+    background: linear-gradient(135deg, var(--neon), color-mix(in srgb, var(--neon) 40%, var(--accent))); box-shadow: 0 8px 22px -10px var(--neon-far); }
+  .msg.typing { display: inline-flex; gap: .3rem; padding: .85rem 1rem; }
+  .msg.typing i { width: .45rem; height: .45rem; border-radius: 50%; background: var(--neon); animation: dot 1s infinite ease-in-out; }
+  .msg.typing i:nth-child(2) { animation-delay: .15s; } .msg.typing i:nth-child(3) { animation-delay: .3s; }
+  @keyframes dot { 0%, 80%, 100% { transform: translateY(0); opacity: .4; } 40% { transform: translateY(-5px); opacity: 1; } }
+  @keyframes pop { from { transform: translateY(6px) scale(.97); opacity: .3; } to { transform: none; opacity: 1; } }
+  .chips { display: flex; gap: .5rem; padding: .75rem 1.25rem 0; overflow-x: auto; scrollbar-width: none; }
+  .chips::-webkit-scrollbar { display: none; }
+  .chips button { flex: none; font-family: var(--body); font-style: italic; font-size: .98rem; padding: .45rem .95rem; border-radius: 999px; cursor: pointer;
+    border: 1px solid color-mix(in srgb, var(--neon) 45%, transparent); background: color-mix(in srgb, var(--neon) 8%, transparent); color: var(--text); }
+  .chips button:hover { background: var(--neon); color: #fff; border-color: var(--neon); }
+  .chat form { display: flex; gap: .6rem; align-items: center; padding: .85rem 1.25rem 1rem; }
+  .chat input[type=text] { flex: 1; min-width: 0; font: inherit; font-size: 1.05rem; padding: .8rem 1.1rem; border-radius: 999px;
+    border: 1px solid var(--rule); background: var(--ink); color: var(--text); }
+  .chat input[type=text]:focus-visible { outline: 2px solid var(--neon); outline-offset: 1px; }
+  .round { flex: none; width: 3rem; height: 3rem; border-radius: 50%; display: grid; place-items: center; cursor: pointer; border: 0; }
+  .photo-btn { border: 1px solid var(--rule); color: var(--silver); background: transparent; }
+  .photo-btn:hover { color: var(--neon); border-color: var(--neon); }
+  .send-btn { background: var(--neon); color: #fff; box-shadow: 0 0 18px var(--neon-far); }
+  .send-btn:hover { filter: brightness(1.1); }
+  .sr { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+  .msg.photo { padding: .35rem; }
+  .msg.photo img { display: block; max-width: 100%; max-height: 16rem; border-radius: 14px; }
+  .chat .note { font-family: var(--mono); font-size: .6rem; color: var(--muted); padding: 0 1.25rem .9rem; margin: 0; line-height: 1.5; letter-spacing: .03em; }
+  .section-label { font-family: var(--mono); font-size: .74rem; letter-spacing: .2em; text-transform: uppercase; color: var(--silver); margin: 0; font-weight: 500; }
+
+  /* Hikaye okurken: üstte sohbet gizlenir, köşede kısayol çıkar */
+  .askbtn { display: none; }
+  .reading .hero { display: none; }
+  .reading .askbtn {
+    display: block; position: fixed; z-index: 15;
+    left: max(16px, env(safe-area-inset-left, 0px));
+    bottom: calc(16px + env(safe-area-inset-bottom, 0px));
+    font-family: var(--mono); font-size: .72rem; letter-spacing: .1em; text-transform: uppercase;
+    padding: .7rem 1.1rem; border-radius: 999px; cursor: pointer;
+    background: var(--neon); color: #fff; border: 0; box-shadow: 0 0 18px var(--neon-far);
+  }
+  @media (max-width: 520px) {
+    .chat { height: 72vh; border-radius: 18px; }
+    .msg { max-width: 88%; font-size: 1rem; }
+    .chat { height: calc(100vh - 120px); }
+  }
+
+  /* İmleç: neon ♂ */
+  html, body, body *:not(input[type=text]):not(textarea) { cursor: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='32' height='32' viewBox='0 0 32 32'%3E%3Cg fill='none' stroke-linecap='round' stroke-linejoin='round'%3E%3Cg stroke='%2317121a' stroke-width='6'%3E%3Ccircle cx='12' cy='20' r='8'/%3E%3Cpath d='M18 14 28 4M20 4h8v8'/%3E%3C/g%3E%3Cg stroke='%23ff5fa2' stroke-width='3'%3E%3Ccircle cx='12' cy='20' r='8'/%3E%3Cpath d='M18 14 28 4M20 4h8v8'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E") 28 4, auto !important; }
+
+  /* Günün Kamasutra'sı */
+  .pose-open { font-family: var(--mono); font-size: .7rem; letter-spacing: .08em; text-transform: uppercase; padding: .35rem .7rem; border-radius: 999px;
+    background: transparent; color: var(--neon); border: 1px solid var(--neon); box-shadow: 0 0 10px var(--neon-far); }
+  .mast-right { display: flex; align-items: center; gap: .6rem; }
+  .pose { position: fixed; inset: 0; z-index: 17; display: grid; place-items: center; padding: 1.25rem max(16px, env(safe-area-inset-right, 0px)) 1.25rem max(16px, env(safe-area-inset-left, 0px));
+    background: color-mix(in srgb, var(--ink) 72%, transparent); backdrop-filter: blur(6px); -webkit-backdrop-filter: blur(6px); animation: fade .25s ease-out; }
+  @keyframes fade { from { opacity: 0; } to { opacity: 1; } }
+  .pose-card { position: relative; width: min(27rem, 100%); max-height: calc(100vh - 2.5rem); overflow-y: auto; text-align: center;
+    padding: 1.6rem 1.4rem 1.4rem; border-radius: 24px; border: 1.5px solid transparent;
+    background: linear-gradient(var(--paper), var(--paper)) padding-box, linear-gradient(160deg, var(--neon), transparent 45%, var(--accent)) border-box;
+    box-shadow: 0 30px 80px -20px var(--neon-far); animation: pop .35s ease-out; }
+  .pose-x { position: absolute; top: .6rem; right: .7rem; background: transparent; border: 0; color: var(--muted); font-size: 1.5rem; line-height: 1; padding: .3rem .5rem; }
+  .pose-kick { font-family: var(--mono); font-size: .66rem; letter-spacing: .22em; text-transform: uppercase; color: var(--silver); margin: 0; }
+  .pose-title { font-family: var(--display); font-style: italic; font-weight: 400; font-size: clamp(2rem, 7vw, 2.6rem); line-height: 1; margin: .35rem 0 1.1rem; }
+  .pose-title em { color: var(--neon); text-shadow: 0 0 16px var(--neon-far); }
+  .die { width: 5.5rem; height: 5.5rem; margin: 0 auto 1.1rem; padding: .7rem; border-radius: 18px; display: grid; grid-template-columns: repeat(3, 1fr); gap: .3rem;
+    background: linear-gradient(145deg, #fff6fa, #f1d9e3); box-shadow: inset 0 -5px 0 rgba(0,0,0,.12), 0 0 0 2px var(--neon), 0 0 26px var(--neon-far); }
+  .die i { display: block; border-radius: 50%; }
+  .die i.on { background: radial-gradient(circle at 35% 35%, #ff7fb6, #b0124f); }
+  .die.rolling { animation: tumble .5s linear infinite; }
+  @keyframes tumble { 0% { transform: rotate(0) scale(1); } 50% { transform: rotate(180deg) scale(1.12); } 100% { transform: rotate(360deg) scale(1); } }
+  .pose.done .die { width: 3.4rem; height: 3.4rem; padding: .45rem; gap: .18rem; border-radius: 12px; margin-bottom: .7rem; }
+  .pose-roll { font-family: var(--mono); font-size: .8rem; letter-spacing: .1em; text-transform: uppercase; padding: .8rem 1.5rem; border-radius: 999px; border: 0;
+    background: var(--neon); color: #fff; box-shadow: 0 0 20px var(--neon-far); }
+  .pose-roll:hover { filter: brightness(1.1); }
+  .pose-out { margin-bottom: 1.1rem; }
+  .pose-art { display: block; width: 100%; max-width: 20rem; margin: 0 auto .6rem; border-radius: 16px; background: color-mix(in srgb, var(--ink) 70%, transparent); }
+  .pose-art path { fill: none; stroke-width: 3; stroke-linecap: round; stroke-linejoin: round; }
+  .pose-art .a { stroke: var(--neon); }
+  .pose-art .b { stroke: var(--accent); }
+  .pose-art .pr { stroke: var(--silver); stroke-width: 2.2; }
+  .pose-art .gr { stroke: var(--rule); stroke-width: 2; }
+  .pose-art text { fill: var(--neon); font-family: var(--body); font-style: italic; font-size: 13px; }
+  .pose-s { font-family: var(--mono); font-size: .7rem; letter-spacing: .16em; text-transform: uppercase; color: var(--accent); margin: .4rem 0 0; }
+  .pose-n { font-family: var(--display); font-style: italic; font-weight: 400; font-size: 1.85rem; line-height: 1.05; margin: .2rem 0 .7rem; text-wrap: balance; }
+  .pose-meta { display: flex; justify-content: center; flex-wrap: wrap; gap: .4rem 1.2rem; margin: 0 0 .8rem; font-family: var(--mono); font-size: .7rem; }
+  .pose-meta div { display: flex; gap: .35rem; }
+  .pose-meta dt { color: var(--muted); text-transform: uppercase; letter-spacing: .08em; }
+  .pose-meta dd { margin: 0; color: var(--text); }
+  .pose-d { margin: 0 auto .6rem; max-width: 22rem; font-size: 1.02rem; line-height: 1.5; }
+  .pose-tip { margin: 0; font-style: italic; color: var(--muted); font-size: .92rem; }
+  .pose-fine { margin: 1rem 0 0; font-family: var(--mono); font-size: .58rem; color: var(--muted); letter-spacing: .05em; }
+
+  /* Sahte reklam: bilerek ucuz, bilerek tek tema */
+  .spam { position: fixed; z-index: 16; right: max(16px, env(safe-area-inset-right, 0px)); bottom: calc(70px + env(safe-area-inset-bottom, 0px));
+    width: min(18.5rem, calc(100vw - 32px)); background: #fff200; color: #111; border: 4px dashed #e10600; box-shadow: 6px 6px 0 #0033cc, 0 18px 40px rgba(0,0,0,.45);
+    font-family: "Comic Neue", "Comic Sans MS", "Chalkboard SE", cursive; text-align: center; padding: .55rem .7rem .7rem; max-height: calc(100vh - 100px); overflow-y: auto; animation: spamIn .5s cubic-bezier(.2, 1.6, .4, 1); }
+  @keyframes spamIn { from { transform: translateY(40px) rotate(-6deg) scale(.6); opacity: 0; } to { transform: none; opacity: 1; } }
+  .spam-top { display: flex; justify-content: space-between; align-items: center; font-family: Arial, sans-serif; font-size: .6rem; color: #555; margin-bottom: .3rem; }
+  .spam-top b { background: #111; color: #fff200; padding: 0 .3rem; font-weight: 700; }
+  .spam-x { width: 1.1rem; height: 1.1rem; line-height: 1rem; font-size: .75rem; padding: 0; border: 1px solid #999; background: #eee; color: #555; font-family: Arial, sans-serif; }
+  .spam-flash { display: inline-block; background: #e10600; color: #fff200; font-family: Anton, Impact, sans-serif; font-size: .8rem; letter-spacing: .06em; padding: .1rem .5rem; transform: rotate(-3deg); animation: blink .7s steps(2) infinite; }
+  @keyframes blink { 50% { opacity: .25; } }
+  .spam-h { font-family: Anton, Impact, "Arial Black", sans-serif; font-size: 1.55rem; line-height: 1.02; margin: .35rem 0 .25rem; color: #e10600; text-transform: uppercase;
+    text-shadow: 2px 2px 0 #0033cc; letter-spacing: .01em; }
+  .spam-h u { text-decoration-color: #0033cc; text-decoration-thickness: 3px; }
+  .spam-sub { font-size: .9rem; line-height: 1.2; margin: 0 0 .45rem; }
+  .spam-sub b { background: #00e64d; padding: 0 .15rem; }
+  .spam-ba { display: grid; grid-template-columns: 1fr auto 1fr; align-items: center; gap: .3rem; margin: .3rem 0 .4rem; }
+  .spam-ba figure { margin: 0; background: #fff; border: 2px solid #111; padding: .2rem; }
+  .spam-ba figcaption { font-family: Anton, Impact, sans-serif; font-size: .7rem; }
+  .spam-ba .blur { height: 2.6rem; background: repeating-linear-gradient(45deg, #ddd 0 6px, #bbb 6px 12px); display: grid; place-items: center; font-family: Anton, Impact, sans-serif; font-size: .75rem; color: #e10600; filter: blur(.4px); }
+  .spam-ba .tall { height: 2.6rem; position: relative; }
+  .spam-ba .tall::after { content: "+70 CM"; position: absolute; inset: auto -.4rem -.5rem auto; background: #e10600; color: #fff; font-family: Anton, Impact, sans-serif; font-size: .7rem; padding: .05rem .3rem; transform: rotate(-8deg); }
+  .spam-arrow { font-family: Anton, Impact, sans-serif; font-size: 1.4rem; color: #e10600; }
+  .spam-meta { display: flex; justify-content: space-between; font-family: Arial, sans-serif; font-size: .66rem; margin-bottom: .45rem; }
+  .spam-meta .st { color: #e69500; }
+  .spam-meta .cd { color: #e10600; font-weight: 700; font-variant-numeric: tabular-nums; }
+  .spam-cta { display: block; width: 100%; font-family: Anton, Impact, sans-serif; font-size: 1.15rem; letter-spacing: .04em; padding: .5rem; border: 3px solid #111; border-radius: 6px;
+    background: linear-gradient(#3dff6e, #00b33c); color: #111; text-shadow: 0 1px 0 #fff; box-shadow: 0 4px 0 #111; animation: nudge 1.1s ease-in-out infinite; }
+  @keyframes nudge { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.05) rotate(-1deg); } }
+  .spam-no { display: inline-block; margin-top: .35rem; font-family: Arial, sans-serif; font-size: .62rem; color: #0033cc; text-decoration: underline; background: none; border: 0; padding: 0; }
+  .spam-fine { margin: .45rem 0 0; font-family: Arial, sans-serif; font-size: .52rem; color: #666; }
+  .spam-twist { padding: .4rem 0 .2rem; }
+  .spam-twist .spam-h { font-size: 1.45rem; }
+  .spam-plant { display: block; width: 5rem; height: 6rem; margin: .2rem auto .3rem; }
+  @media (prefers-reduced-motion: reduce) { .spam, .spam-flash, .spam-cta { animation: none; } }
+
+  @media (prefers-reduced-motion: reduce) {
+    .brand h1 { animation: none; }
+    .curtain { display: none; }
+    .toc a, .dice { transition: none; }
+    .msg, .msg.typing i { animation: none; }
+    .pose, .pose-card, .die.rolling { animation: none; }
+  }
+</style>
+<style>:root{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}body{margin:0}[hidden]{display:none!important}img{max-width:100%}</style>
+</head>
+<body>
+
+
+<div class="gate" id="gate">
+  <div class="gate-box">
+    <span class="badge" style="justify-self:start">18+</span>
+    <p class="h">Bu sayfa yetişkinler içindir.</p>
+    <p>Gümüş Saatler'deki hikayeler yetişkinler arasında, rızaya dayalı, açık cinsel sahneler içerir. Devam etmek için 18 yaşından büyük olmalısın. Sayfa sesli açılır.</p>
+    <div class="gate-actions">
+      <button id="gate-yes" type="button">18 yaşından büyüğüm</button>
+      <button id="gate-no" class="ghost" type="button">Çık</button>
+    </div>
+    <p class="no" id="gate-msg" hidden>Anlaşıldı. Bu sayfa sana göre değil.</p>
+  </div>
+</div>
+
+<div class="curtain" id="curtain" aria-hidden="true"><div class="c-left"></div><div class="c-right"></div></div>
+<canvas id="sky" aria-hidden="true"></canvas>
+<canvas id="fx" aria-hidden="true"></canvas>
+
+<div class="wrap">
+  <header class="masthead">
+    <a class="brand" href="#">
+      <h1>Gümüş Saatler</h1>
+      <span class="byline">Yazan <b>Mehmet BIGSILVER</b></span>
+    </a>
+    <div class="mast-right"><button class="pose-open" id="pose-open" type="button">⚄ Günün pozisyonu</button><span class="badge">18+</span></div>
+  </header>
+  <section class="hero" aria-labelledby="hero-title">
+    <section class="chat" id="chat" aria-label="Mehmet'le sohbet">
+      <div class="chat-head">
+        <div class="avatar" aria-hidden="true">M</div>
+        <div><h2 class="who" id="hero-title">Mehmet'e <em>sor.</em></h2><div class="status"><b>Çevrimiçi</b> · Aşk, gece, sen. Fotoğraf da at.</div></div>
+      </div>
+      <div class="msgs" id="msgs" aria-live="polite"></div>
+      <div class="chips" id="chips"></div>
+      <form id="chat-form" autocomplete="off">
+        <label class="round photo-btn" for="chat-photo" title="Fotoğraf gönder"><svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path fill="currentColor" d="M9 4 7.2 6H4a2 2 0 0 0-2 2v10a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V8a2 2 0 0 0-2-2h-3.2L15 4H9zm3 4.5a4.5 4.5 0 1 1 0 9 4.5 4.5 0 0 1 0-9zm0 2a2.5 2.5 0 1 0 0 5 2.5 2.5 0 0 0 0-5z"/></svg><span class="sr">Fotoğraf gönder</span></label>
+        <input id="chat-photo" type="file" accept="image/*" hidden>
+        <input id="chat-input" type="text" maxlength="200" placeholder="Mehmet'e bir şey sor..." aria-label="Mehmet'e sorun">
+        <button class="round send-btn" type="submit" aria-label="Gönder"><svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path fill="currentColor" d="M3.4 20.4 21 12 3.4 3.6 3.4 10l12.6 2-12.6 2z"/></svg></button>
+      </form>
+      <p class="note">Mehmet bir hikaye karakteridir, cevaplar önceden yazılmıştır. Gönderdiğin fotoğraf yalnızca senin ekranında görünür, hiçbir yere yüklenmez.</p>
+    </section>
+  </section>
+  <main id="view"></main>
+  <footer>Tüm karakterler kurgusaldır ve 18 yaşından büyüktür. Her gün yeni bir hikaye. © Mehmet BIGSILVER</footer>
+</div>
+
+<button class="sound" id="sound" type="button" aria-pressed="false"><span class="bars" aria-hidden="true"><i></i><i></i><i></i></span><span id="sound-label">Müziği aç</span></button>
+
+<button class="askbtn" id="askbtn" type="button">Mehmet'e sor</button>
+
+<aside class="spam" id="spam" hidden aria-label="Reklam taklidi">
+  <div class="spam-top"><span><b>REKLAM</b> ⓘ sponsorlu</span><button class="spam-x" id="spam-x" type="button" aria-label="Reklamı kapat">✕</button></div>
+  <div id="spam-body">
+    <span class="spam-flash">DOKTORLAR ŞAŞKIN!</span>
+    <p class="spam-h">1 ayda <u>70 cm</u> büyüsün ister misin?</p>
+    <p class="spam-sub">Karaköylü adamın keşfettiği bu <b>basit yöntem</b> herkesi şaşırtıyor!</p>
+    <div class="spam-ba">
+      <figure><div class="blur">?</div><figcaption>ÖNCE</figcaption></figure>
+      <span class="spam-arrow">➜</span>
+      <figure><div class="blur tall">?</div><figcaption>SONRA</figcaption></figure>
+    </div>
+    <div class="spam-meta"><span class="st">★★★★★ (12.483 yorum)</span><span class="cd">SON 3 PAKET · <span id="spam-cd">04:59</span></span></div>
+    <button class="spam-cta" id="spam-yes" type="button">EVET, İSTİYORUM!</button>
+    <button class="spam-no" id="spam-no" type="button">Hayır, böyle mutluyum</button>
+  </div>
+  <p class="spam-fine">Bu bir reklam taklididir. Hiçbir şey satılmıyor.</p>
+</aside>
+<div class="pose" id="pose" hidden role="dialog" aria-modal="true" aria-labelledby="pose-title">
+  <div class="pose-card">
+    <button class="pose-x" id="pose-close" type="button" aria-label="Kapat">×</button>
+    <p class="pose-kick">Gümüş Saatler sunar</p>
+    <h2 class="pose-title" id="pose-title">Günün <em>Kamasutra’sı</em></h2>
+    <div class="pose-out" id="pose-out" hidden></div>
+    <div class="die" id="pose-die" aria-hidden="true"></div>
+    <button class="pose-roll" id="pose-roll" type="button">Zarı at</button>
+    <p class="pose-fine">Tamamen ev yapımı. Profesyonel gözetim gerekmez.</p>
+  </div>
+</div>
+
+
+<!-- Hikayeler: tarihe göre sıralanır, en yenisi üstte. Her gün bu diziye bir kayıt eklenir. paragraphs içindeki "---" sahne arası çizer. -->
+<script id="stories" type="application/json">
+[
+  {
+    "slug": "son-tramvay",
+    "title": "Son Tramvay",
+    "date": "2026-11-26",
+    "teaser": "Gece 03.00 ile 03.17 arasında haritada olmayan duraklara giden bir tramvay, tek yolcusu ve her şeyi yüksek sesle söyleyen bir anons sistemi.",
+    "paragraphs": [
+      "Her gece 03.00'te Kabataş'tan bir tramvay kalkar. Hiçbir tarifede yazmaz. On yedi dakika sürer ve haritada olmayan duraklara uğrar: Az Kalsın, Unutulan, Söylenmeyen. Sonra depoya döner, sanki hiç çıkmamış gibi.",
+      "Mehmet o tramvayın vatmanıydı. Kırk beş yaşındaydı, on iki yıldır bu hattı sürüyordu. Kuralları ezbere biliyordu. Az Kalsın'da inen, az kalsın yaptığı şeyin yapıldığı bir şehre çıkar ve sabah her şeyi unutur. Unutulan'da kimse inmez. Söylenmeyen'de kapılar açılır, kimse inmez, binmez, sadece anons çalışır.",
+      "Yolcu genelde olmazdı. Üç haftadır bir tane vardı.",
+      "Leyla Erk, kırk iki yaşında, anestezi uzmanı. Haseki'de gece nöbetinden çıkıyor, Kabataş'ta yanlış perona iniyor, bu tramvaya biniyordu. İlk gece kartını okutmaya çalışmış, makine \"Geçersiz, yine de buyrun\" demişti. O günden beri hep aynı yere oturuyordu: ön tarafta, vatman kabininin camının arkasında.",
+      "Hiç konuşmamışlardı. Mehmet aynada onu görüyordu. Gözleri kapalı, başı cama yaslı. Bazen gözlerini açıyor ve Mehmet'in ellerine bakıyordu. Mehmet bunu fark etmemiş gibi yapıyordu. Sürüş kolu elinde biraz daha düzgün duruyordu.",
+      "O gece Söylenmeyen'de kapılar açıldı. Anons cızırdadı.",
+      "\"Söylenmeyen. Leyla Hanım üç haftadır vatmanın ellerine bakıyor. Bir de ensesine.\"",
+      "Leyla gözlerini açtı. Mehmet kolu bıraktı. Tramvay durdu.",
+      "\"Bu ne?\" dedi Leyla.",
+      "\"Anons,\" dedi Mehmet. Sesi her zamankinden kalındı. \"Bozuk değil.\"",
+      "Hoparlör bir kez daha cızırdadı.",
+      "\"Söylenmeyen. Vatman Mehmet Bey üç haftadır aynayı yolcuya göre ayarlıyor. Yola göre değil.\"",
+      "---",
+      "Bir süre ikisi de konuşmadı. Kapılar açıktı. Dışarıda peron boştu, tabelada sadece durak adı yazıyordu, altında küçük harflerle: Bekleme süresi, söylenene kadar.",
+      "\"Kapılar kapanmayacak mı?\" dedi Leyla.",
+      "\"Söylenene kadar kapanmaz.\"",
+      "\"Ne söylenene kadar?\"",
+      "Mehmet kabinin kapısını açtı. Yolcu bölümüne çıktı, ilk kez. Leyla'nın önünde durdu. Tramvayın ışığı titriyordu.",
+      "\"Seni her gece eve bırakmak istiyorum,\" dedi. \"Kabataş'a değil. Eve.\"",
+      "Kapılar kapandı. Tramvay kendiliğinden, çok yavaş, hareket etmeye başladı. Vatmansız.",
+      "Leyla kalktı. Onun yakasını tuttu. \"Ben de bir şey söyleyeyim,\" dedi, \"anons söylemeden.\" Ve onu öptü.",
+      "---",
+      "Tramvay Unutulan'dan geçti, durmadı. Leyla'nın önlüğü koltuğa düştü, sonra Mehmet'in üniforma ceketi. Sarı tutunma direkleri, plastik koltuklar, tavanda reklam panoları: hiçbiri bunun için yapılmamıştı. Mehmet onu direğe yasladı. Leyla'nın eli direği tuttu, öbür eli Mehmet'in ensesini, üç haftadır baktığı yeri.",
+      "Mehmet onun kazağını yukarı sıyırdı, ağzı göğüslerine indi. Leyla başını geriye attı, tavandaki reklamda bir diş macunu gülümsüyordu. Mehmet onun pantolonunun düğmesini açtı, eli içeri girdi. Leyla'nın kalçası onun eline doğru kalktı. Tramvay viraja girdi ve ikisini birden sallayıp yan koltuğa oturttu. Leyla güldü. Mehmet'in kucağına çıktı.",
+      "Kemerini o çözdü. Mehmet'i eline aldı, sonra yavaşça, rayların ritmine uyarak içine aldı. Tramvay makasın üstünden geçerken ikisi de bir an durdu, sonra Leyla hareket etmeye başladı. Rayların sesi tak tak, onların nefesi daha hızlı. Pencerelerden ışıklar akıyordu: Az Kalsın'ın peronu, orada bekleyen başka bir Leyla ve başka bir Mehmet, birbirine hiç bakmadan. Leyla onlara baktı, sonra Mehmet'e, ve hızlandı.",
+      "Leyla geldiğinde tramvay zil çaldı. Kimse basmamıştı. Mehmet onun belini sıkıca tutup kendini bıraktı, alnını onun göğsüne dayayarak.",
+      "---",
+      "03.17'de tramvay depoya girdi. Leyla önlüğünü giydi, saçını topladı. Kapıda durdu.",
+      "\"Yarın?\"",
+      "\"Her gece 03.00.\"",
+      "Leyla indi. Mehmet kabine döndüğünde bilet makinesinden kendiliğinden bir fiş çıkmıştı.",
+      "Aktarma: Yarın 03.00. Durak: Ev. Geçerlidir."
+    ]
+  },
+  {
+    "slug": "yer-yer-saganak",
+    "title": "Yer Yer Sağanak",
+    "date": "2026-11-26",
+    "teaser": "Hava durumunu hiç tutturamayan bir spiker. İnsanlar hakkında söylediği her şey ise birebir çıkıyor. Yapımcı canlı yayında kendi gecesini sorar.",
+    "paragraphs": [
+      "Mehmet on dokuz yıldır akşam haberlerinden sonra hava durumunu sunuyordu ve bir kez bile tutturamamıştı. Güneş dese kar yağardı. Fırtına dese çocuklar parkta dondurma yerdi. Kanal onu kovmayı üç kez düşünmüş, üçünde de reyting yüzünden vazgeçmişti. İzleyiciler onu seviyordu. Kırk dört yaşında, sakallı, sesi kadife gibi. Bir de bir özelliği vardı, bunu kimse yüksek sesle söylemezdi.",
+      "İnsanlar hakkında söylediği her şey çıkıyordu.",
+      "Bir akşam yayın sonunda kameraya \"İzmir'deki o kadın için: yarın eski kocası arayacak, açmayacak\" demişti. Ertesi gün kanala bir çiçek gelmişti, kartında \"Açmadım\" yazıyordu. O günden sonra Mehmet her yayının son on saniyesini birine ayırırdı. Haritada değil, bir insanın üstünde.",
+      "Sevda Gür yapımcıydı. Otuz dokuz yaşında, kulağında kulaklık, elinde kronometre. Mehmet'in bu son on saniyesini dört yıldır kesmeye çalışıyordu, dört yıldır kesemiyordu. Rejide herkes biliyordu ki Sevda en çok o on saniyeyi izliyordu.",
+      "Perşembe gecesi, yayından iki dakika önce, Sevda yeşil perdenin önüne geldi. Mehmet ceketinin yakasını düzeltiyordu.",
+      "\"Bu akşam son on saniye benim,\" dedi Sevda.",
+      "Mehmet ona baktı. \"Emin misin?\"",
+      "\"Dört yıldır söylediğin her şey tuttu. Bir kere de benim için söyle.\"",
+      "\"Ya beğenmezsen?\"",
+      "\"Kesemem nasılsa.\"",
+      "---",
+      "Yayın başladı. Mehmet haritayı gösterdi: Marmara'da açık hava, Karadeniz'de hafif yağmur. Ertesi gün Marmara'ya dolu yağacaktı, kimse şaşırmayacaktı. Son on saniyede kameraya döndü. Rejide Sevda kronometreyi bıraktı.",
+      "\"Ve son olarak, Kadıköy'de bir yapımcı için,\" dedi Mehmet. \"Bu gece saat on biri çeyrek geçe stüdyoda yer yer sağanak. Gece yarısına doğru şiddetli yakınlaşma. Sabaha karşı açık.\"",
+      "Ekran jeneriğe geçti. Rejide kimse konuşmadı. Ses teknisyeni kulaklığını yavaşça çıkardı.",
+      "Saat on biri çeyrek geçe stüdyoda yağmur başladı.",
+      "Tavanda yağmurlama sistemi yoktu. Yağmur yine de yağıyordu, ılık ve ince, yalnızca yeşil perdenin önünde. Sevda rejiden çıkıp stüdyoya girdiğinde Mehmet yağmurun altında duruyordu, ceketi ıslak.",
+      "\"Bunu sen mi yaptın?\"",
+      "\"Ben sadece söyledim,\" dedi Mehmet. \"Gerisi tahmin.\"",
+      "Sevda yağmurun altına girdi.",
+      "---",
+      "Kamera kayıttaydı. Kimse kapatmamıştı. Yeşil perdenin önünde duran her şey monitörde haritanın içinde görünüyordu: Mehmet'in ıslak gömleği Doğu Anadolu'nun üstündeydi, Sevda'nın elleri Ege'de. Sevda bir an monitöre baktı ve güldü. Sonra kabloyu çekti.",
+      "Mehmet onun gömleğinin düğmelerini açarken yağmur hızlandı. Sevda onun kemerini çözdü, ıslak kumaş yere düştü. Mehmet onu perdenin önüne yasladı, ağzını boynundan göğüslerine indirdi. Sevda'nın tenindeki yağmur damlaları onun dudaklarında ılıktı. Mehmet diz çöktü, onun eteğini sıyırdı, bacaklarının arasını öptü, ağzıyla onu yavaşça, sabırla açtı. Sevda perdeye tutunacak bir yer aradı, bulamadı, Mehmet'in saçlarını tuttu. Geldiğinde yağmur bir an durdu, sonra yeniden başladı. Daha sıcak.",
+      "Sonra Sevda onu yere çekti, ıslak zemine, kablolar arasına. Üstüne çıktı ve onu içine aldı. Mehmet gözlerini kapamadı. Sevda'nın saçlarından su damlıyordu, göğsüne, yüzüne. Sevda önce yavaş hareket etti, sonra Mehmet onun kalçalarını kavrayıp kendine çekti ve ritmi o tuttu. Stüdyonun tavanında yıldırım yoktu ama ışıklar bir kez söndü, bir kez yandı. Gece yarısına doğru, tam söylendiği saatte, şiddetli yakınlaşma geldi. Sevda onun göğsüne kapandı. Mehmet onun ıslak sırtına sarılıp kendini bıraktı.",
+      "---",
+      "Sabaha karşı yağmur dindi. Stüdyoda zemin kurumuştu. Sevda kronometresini yerden aldı, durdurdu.",
+      "\"Kaç dakika?\" dedi Mehmet.",
+      "\"Söylemeyeceğim. Reyting bozulur.\"",
+      "Ertesi akşam Mehmet Marmara için güneşli dedi. Bütün gün yağmur yağdı. Son on saniyede kameraya döndü.",
+      "\"Kadıköy'deki o yapımcı için: Bu gece de aynı.\""
+    ]
+  },
+  {
+    "slug": "kirmizi-isik",
+    "title": "Kırmızı Işık",
+    "date": "2026-11-25",
+    "teaser": "Tünel'deki bir karanlık odada banyo edilen filmler, çekilen şeyi değil, çeken kişinin o an ne istediğini gösterir. Bir sigorta eksperinin otuz altıncı karesi hariç hepsi hasar fotoğrafıdır.",
+    "paragraphs": [
+      "Tünel'deki Kırmızı Işık Foto'da banyo edilen filmler yalan söylemez. Ama doğruyu da söylemez. Gösterdikleri şey, deklanşöre basıldığı an çekenin ne istediğidir.",
+      "Kural bundan ibaretti ve Mehmet'in babası bunu tabelaya yazmamıştı. Müşteriler kendileri anlardı. Bir düğün fotoğrafçısı gelin damadı çeker, banyoda bir balık tutma teknesi çıkar. Bir anne çocuğunun mezuniyetini çeker, karede deniz kıyısında tek başına kitap okuyan bir kadın vardır. Kimse şikâyet etmezdi. Fotoğrafları alır, uzun uzun bakar, parasını öder, bir daha gelirdi.",
+      "Mehmet kırk altı yaşındaydı. Yirmi iki yıldır başkalarının ne istediğini kırmızı ışıkta, bir leğenin içinde, yavaş yavaş ortaya çıkarken izliyordu. Kendi filmini hiç banyo etmemişti. Kendi makinesi bile yoktu.",
+      "Zerrin Ak salı öğleden sonra geldi. Kırk üç yaşında, sigorta eksperi. Tezgaha bir rulo film bıraktı. \"Mahkeme dijitale itiraz ediyor,\" dedi. \"Negatif istiyorlar. Hepsi hasar. Kaza, su baskını, bir de yanan bir depo.\"",
+      "\"Yarın.\"",
+      "\"Bugün lazım. Saat beşte bilirkişiye gidiyorum.\"",
+      "Mehmet saate baktı. Sonra karanlık odanın kapısını gösterdi. \"İçeride sekiz dakika boyunca kapı açılmaz. Işık girerse her şey gider.\"",
+      "\"Anlaşıldı.\"",
+      "\"Bir de,\" dedi Mehmet, \"fotoğraflar biraz farklı çıkabilir.\"",
+      "---",
+      "İçeride yalnızca kırmızı ampul yanıyordu. Üç leğen, bir musluk, tavana gerilmiş bir ip, ipte mandallar. Zerrin duvara yaslandı, kollarını kavuşturdu. Mehmet ilk kâğıdı banyoya daldırdı, maşayla hafifçe salladı.",
+      "Kâğıtta önce gri bir leke belirdi. Sonra bir tabak. Sonra tabağın içinde, limon dilimleriyle, midye dolma.",
+      "\"Bu ne?\"",
+      "\"Yedi numaralı kare.\" Mehmet negatife baktı. \"Arkası çökmüş beyaz bir Doblo.\"",
+      "Zerrin bir şey demedi. Mehmet ikinci kâğıdı daldırdı. Boş bir tren kompartımanı, pencerede kar. Üçüncüsü: beyaz çarşaflı bir yatak, sabah ışığı, yatakta kimse yok. Dördüncüsü: yine aynı yatak. Beşincisi: bir otoyol çıkışı, tabelada \"Ayvalık\".",
+      "\"Bunları mahkemeye veremem.\"",
+      "\"Negatifler sağlam,\" dedi Mehmet. \"Mahkemenin göreceği onlar. Baskıyı yalnız siz görürsünüz.\"",
+      "Zerrin kollarını çözdü. Leğenin başına geldi, omzu onun omzuna değdi. Otuz dört kare boyunca hiç konuşmadılar. Hasar dosyaları leğende tek tek başka şeylere dönüştü: bir bardak çay, bir saç kesimi, açık bir pencere, yine o boş yatak. Mehmet her kareyi ipe asarken Zerrin'in ona baktığını hissediyordu.",
+      "Otuz beşinci kare yanan depoydu. Kâğıtta bir istifa dilekçesi çıktı, imzasız.",
+      "\"Otuz altı?\"",
+      "\"Makineyi denemek için çektim,\" dedi Zerrin. \"Burada, tezgahta. Siz arkanızı dönmüştünüz.\"",
+      "Mehmet kâğıdı leğene bıraktı. Görüntü yavaş geldi. Önce kırmızı bir ışık. Sonra bir ip, mandallar. Sonra iki kişi. Bu oda. Kadının sırtı duvara yaslıydı ve adamın eli eteğinin altındaydı. Adamın yüzü görünmüyordu ama sakalı vardı.",
+      "Mehmet maşayı bıraktı. Banyo sıvısının içinde fotoğraf koyulaşmaya devam etti. Kimse onu çıkarmadı.",
+      "\"Kural neydi?\" dedi Zerrin. Sesi alçaktı.",
+      "\"Çeken kişinin o an ne istediği.\"",
+      "\"Siz hiç çektiniz mi?\"",
+      "\"Hayır.\"",
+      "Zerrin çantasından makineyi çıkardı. İçinde yeni bir rulo vardı, mahkeme için yedek. Ona uzattı.",
+      "---",
+      "Mehmet makineyi hayatında ilk kez gözüne kaldırdı. Vizörde Zerrin kırmızı ışığın içindeydi, gömleğinin üst düğmesini açıyordu. Deklanşöre bastığında ses odada küçük, kuru bir çıt yaptı.",
+      "Sonra makineyi tezgaha bıraktı ve gerisini fotoğrafa bırakmadılar.",
+      "Zerrin onu yakasından tutup kendine çekti. İlk öpüşme acelesizdi, ikincisi değil. Mehmet onu duvara yasladı. Eli eteğinin altına girdiğinde Zerrin gülümsedi, otuz altıncı karedeki gibi. Kalçasını eline doğru kaldırdı. Mehmet çorabını, sonra iç çamaşırını aşağı sıyırdı, parmakları onun ıslaklığını buldu ve acele etmeden, kırmızı ışıkta bir görüntünün belirmesini bekler gibi, onu okşadı. Zerrin başını duvara dayadı. Mandallar ipte hafifçe sallanıyordu.",
+      "\"Kapı,\" dedi Zerrin nefes nefese.",
+      "\"Sekiz dakika açılmaz.\"",
+      "\"Geçti sekiz dakika.\"",
+      "\"Açılmaz.\"",
+      "Zerrin onun kemerini çözdü, eli onu buldu, avucunda sıktı. Mehmet onu kaldırıp tezgahın kenarına oturttu. Leğenlerden biri devrildi, kimyasal kokusu odaya yayıldı. Zerrin bacaklarını onun beline doladı ve onu kendine çekti. Mehmet içine girdiğinde ikisi de bir an durdu. Musluk damlıyordu.",
+      "Yavaş başladılar. Zerrin'in tırnakları sırtındaydı, nefesi kulağındaydı. Her hareketle tezgahtaki kâğıtlar biraz daha kayıyor, ipteki fotoğraflar birbirine çarpıyordu: midye dolma, boş yatak, Ayvalık tabelası. Zerrin geldiğinde başını onun omzuna gömdü ve hiçbir ses çıkarmadı, yalnızca bacakları sıkıldı. Mehmet onu sıkıca tuttu, birkaç hareket sonra o da bıraktı kendini.",
+      "Bir süre kırmızı ışıkta öyle kaldılar. Sonra Zerrin onun saçlarını düzeltti. \"Benimkini gördün,\" dedi. \"Şimdi seninkini banyo et.\"",
+      "---",
+      "Saat beşi yirmi geçiyordu. Bilirkişiyi kimse aramadı.",
+      "Mehmet son kareyi banyoya daldırdığında ikisi de leğenin başında duruyordu. Görüntü geldi. Ne bu oda vardı, ne kırmızı ışık, ne de Zerrin'in açık gömleği. Beyaz çarşaflı bir yatak. Sabah ışığı. Bu kez yatakta biri vardı. Sırtı dönüktü, saçı yastığa dağılmıştı ve yanındaki yastıkta bir çukur vardı, az önce kalkmış birinden kalan.",
+      "Zerrin uzun süre baktı. Sonra fotoğrafı leğenden çıkardı, ipe kendisi astı.",
+      "Ertesi sabah Mehmet dükkânı açtığında ip boştu. Tezgahta, Zerrin'in el yazısıyla bir fiş duruyordu.",
+      "Teslim alındı: 1 rulo, 36 kare. Yedek rulo: 1 kare dolu, 35 boş. Not: Ayvalık, cumartesi. Makineyi getir."
+    ]
+  },
+  {
+    "slug": "golge-terzisi",
+    "title": "Gölge Terzisi",
+    "date": "2026-11-24",
+    "teaser": "Karaköy'de bir merdiven altında, sahibinden kopan gölgeleri geri diken bir terzi ve salıdan beri duvarında asılı duran yabancı bir gölge.",
+    "paragraphs": [
+      "Karaköy'de bazı geceler gölgeler sahiplerinden kopar. Çoğu zaman kimse fark etmez. Gölge zaten insanın birkaç saniye önünden yaşar: ne yapacaksan önce o yapar, sen hemen arkasından gelirsin. Üst üste bindiğiniz için ara görünmez. Ama gölge koparsa ara açılır. Bir dakika, bir saat. İnsan kendi hayatına geç kalmaya başlar.",
+      "Mehmet gölge terzisiydi. Dükkânı Kemankeş'te, bir merdiven altındaydı: tek ampul, bir dikiş makinesi, duvarda çengellere asılmış sahipsiz gölgeler. Kırk dört yaşındaydı. İğnesi gümüştendi, ipliği mum ışığından. Babası ona tek bir kural öğretmişti: Dikerken gölgeye değil, sahibine bak.",
+      "Müşterileri genelde aynı şikayetle gelirdi. Bir balıkçı ağı denize atmış, balık bir dakika önce kaçmış. Bir gelin nikâh masasında \"evet\" demiş, salon alkışı çoktan bitirmiş. Mehmet onları ampulün altına alır, gölgesizliklerine bakar, duvardaki çengellerde sahibini arardı. Bulursa dikerdi. Bulamazsa bir hafta beklemelerini söylerdi. Kopan gölgeler genelde geri gelirdi. Gidecek başka yerleri yoktu.",
+      "Kadın perşembe akşamı, kapanışa yakın geldi. Ampulün altında durdu ve yere hiçbir şey düşmedi.",
+      "\"Salıdan beri yok,\" dedi. \"Bugün duruşmaya iki dakika geç girdim. Hâkim cümlemi benden önce duydu.\"",
+      "Adı Nermin Tuna'ydı. Kırk bir yaşında, ağır ceza avukatı. Yirmi yıldır hiçbir yere geç kalmamıştı. Mehmet defteri açtı, kaybolma gününü ve yerini yazdı. Mehmet sordu: Salı akşamı neredeydin? Nermin düşündü. Karaköy'de, bir meyhanede. Bir müvekkilini beklemiş, müvekkil gelmemiş. Kalkarken kapıdan biri girmiş, sakallı biri, yüzüne bakmadan yanından geçmiş. Bir an omuz omuza gelmişler. O kadar.",
+      "Mehmet kalemi bıraktı. Salı akşamı o meyhanedeydi. Sonra duvara baktı.",
+      "Çengellerden birinde ince, uzun bir gölge asılıydı. Topuklu ayakkabı, toplanmış saç. Mehmet onu indirmeye uzandığında gölge çengelden kendiliğinden kaydı, duvar boyunca yürüdü ve başka bir gölgenin yanında durdu. Mehmet'in kendi gölgesinin yanında.",
+      "Nermin kaşlarını kaldırdı. \"O seninki mi?\"",
+      "\"Benimki.\"",
+      "\"Ne yapıyorlar?\"",
+      "Gölgeler duvarda yan yana duruyordu. Nermin'in gölgesi başını öbürünün omzuna yasladı.",
+      "\"Salıdan beri burada,\" dedi Mehmet. Boğazını temizledi. \"Benimkinin de koptuğunu bilmiyordum.\"",
+      "---",
+      "Dikiş ayak bileğinden yapılır. Mehmet Nermin'e taburenin üstüne çıkmasını, ayakkabılarını çıkarmasını söyledi. Diz çöktü, gölgeyi yere uzatıp topuğuna iğneledi. İlk ilmekte Nermin'in nefesi kesildi. Gölgeye batan iğne tende hissedilir. Acıtmaz. Başka bir şeye benzer.",
+      "\"Devam edeyim mi?\"",
+      "\"Et.\"",
+      "İkinci ilmek. Üçüncü. Ampul hafifçe sallanıyordu. Duvarda, dikişin henüz tutmadığı yerde, Nermin'in gölgesi başka bir şey yapıyordu: Mehmet'in gölgesinin yüzünü iki eliyle tutmuş, öpüyordu.",
+      "Nermin taburenin üstünde dimdik duruyordu, kollarını kavuşturmuştu. Mahkemede böyle durduğu belliydi. Mehmet dördüncü ilmeği attığında kollarını çözdü. Beşincide eli Mehmet'in omzuna indi, dengesini bulmak için. Öyle dedi.",
+      "İkisi de gördü. Gölge birkaç saniye öndedir. Ne yapacaksan önce o yapar.",
+      "\"Dikiş bitince ara kapanır,\" dedi Mehmet. Gözünü iğneden ayırmadı. \"Gölge karar vermez. Sadece acele eder. Kararı sahibi verir.\"",
+      "Nermin duvara baktı. Sonra ona.",
+      "\"Biraz acele etmiş.\"",
+      "\"Biraz.\"",
+      "Taburenin üstünden eğildi ve Mehmet'in yüzünü iki eliyle tuttu.",
+      "---",
+      "Bundan sonrasını hep bir an önce duvarda gördüler. Gölgeler önden gidiyor, onlar arkadan yetişiyordu. İlk başta bir oyundu. Nermin'in gölgesi gömleğin düğmelerini açıyordu, Nermin açtı. Mehmet'in gölgesi eteğin fermuarını indiriyordu, Mehmet indirdi. Bir ara Nermin durup duvara baktı, gölgesinin yaptığına kaşlarını kaldırdı, sonra güldü ve onu geçti. Gölgesi ona yetişmek zorunda kaldı. Bu hoşuna gitti.",
+      "Dükkânın kapısı sokağa bakan buzlu bir camdı. Dışarıdan geçen biri olsa, camda üst üste binen iki karaltı görür, sonra adımlarını hızlandırırdı. Kimse geçmedi. Karaköy'de perşembe gecesi, saat onu geçmişti.",
+      "Mehmet onu kesim masasına oturttu. Kumaş topları yere yuvarlandı. Ağzı boynundan göğüslerine indi, Nermin'in parmakları saçlarındaydı. Duvarda iki gölge çoktan tek bir şekil olmuştu. Mehmet onun bacaklarının arasına diz çöktü ve onu ağzıyla buldu. Nermin masanın kenarını kavradı. Ampul sallandıkça duvardaki şekil bir büyüyor, bir küçülüyordu.",
+      "Sonra Nermin onu yukarı çekti, kemerini çözdü, eliyle onu kendine yönlendirdi. Mehmet içine girdiğinde ikisi de duvara bakmadı. İlk kez gölgelerinden önce davranıyorlardı. Önce yavaş, sonra derin. Nermin'in topukları onun belindeydi. Dikiş yarımdı ve her hareketle bir ilmek kendiliğinden atılıyor, gölge topuğundan baldırına doğru ona yeniden bağlanıyordu. Nermin geldiğinde son ilmek tuttu. Mehmet yüzünü onun omzuna gömdü ve hemen ardından bıraktı kendini.",
+      "Duvarda Nermin'in gölgesi sahibinin üstüne tam oturmuştu. Bir saniye bile fark yoktu.",
+      "---",
+      "Nermin giyinirken saatine baktı. Saat doğruydu. Kapıda ampulün altına çıktı. Gölgesi yere düştü, tam ayaklarının dibine, olması gerektiği gibi.",
+      "\"Borcum?\"",
+      "\"Gölgen salıdan beri burada kaldı,\" dedi Mehmet. \"Kira say.\"",
+      "Nermin gitti. Mehmet bir süre masanın kenarına oturdu. Yerde kumaş topları, tabure devrik. Defteri açtı, Nermin'in satırının yanına \"teslim edildi\" yazacaktı. Yazmadı.",
+      "Mehmet dükkânı kapattı, ampulü söndürdü. Kendi gölgesini dikmeyi unuttu.",
+      "Ertesi akşam dükkânı açtığında gölgesi kapının önündeydi. Bir saattir birini bekliyordu."
+    ]
+  },
+  {
+    "slug": "dusuk-yercekimi",
+    "title": "Düşük Yerçekimi",
+    "date": "2026-11-23",
+    "teaser": "Ay'ın güney kutbunda, iki iletişim penceresi arasında kalan elli dokuz dakika.",
+    "paragraphs": [
+      "Ay'da her şey altıda bir ağırlıktadır. Mehmet bunu üç haftadır biliyordu. Ama İpek Aral'ın kaskı çıkınca saçlarının nasıl yavaşça havalanıp yavaşça indiğini ilk kez o akşam gördü.",
+      "Shackleton kraterinin kenarındaki habitat iki kişilikti. Görev on dört gün sürecekti, on dokuzuncu gündeydiler. Bir güneş fırtınası dönüş kapsülünü yörüngede bekletiyordu. Houston'la saat başı konuşuyorlardı, her seferinde kırk saniye.",
+      "İpek komutandı. Kırk dört yaşında, üç görev, bir boşanma, sıfır espri. Mehmet görevin jeoloğuydu. Kırk bir yaşındaydı ve topladığı her taşa bir isim koyuyordu. Kayıt defterinde Numune 88'in adı \"Teyzemin Böreği\"ydi. İpek bunu iki kez sildirmişti.",
+      "O akşam İpek bir bardak su doldururken bir damla taştı. İkisi de damlanın düşüşünü izledi. Dünya'da göz açıp kapayıncaya kadar biterdi bu. Burada damla, düşüp düşmemeye karar veriyormuş gibi indi. Yere değdiğinde İpek güldü. Mehmet onu ilk kez gülerken duyuyordu.",
+      "\"Ne?\" dedi İpek.",
+      "\"Hiç. Prosedürde gülmek var mıydı, onu düşünüyorum.\"",
+      "\"Prosedür 4.2.\" Saçını topladı, toka tutmadı, saç yine havalandı. \"Komutan, mürettebatın tulumunu çıkarmasına yardım eder.\"",
+      "\"Tulumu çıkardım ben.\"",
+      "\"Biliyorum.\"",
+      "Saat 20:59'du. Houston penceresi açıldı. Mehmet günlük raporu okudu: on iki numune, bir arızalı matkap, oksijen yüzde doksan dört. İpek arkasında duruyordu, eli Mehmet'in ensesindeydi. Kırk saniye bitti. Ekranda bir sonraki pencereye kalan süre yazıyordu: 59:20.",
+      "---",
+      "Ay'da sevişmeyi kimse anlatmamıştı onlara. Santrifüjde dönmüşler, havuzda tulumla tamir yapmışlar, bir mağarada on gün uyumuşlardı. Bunu öğreten bir modül yoktu.",
+      "İlk öpüşmede Mehmet onu kendine çekti ve ikisi birden yerden kesildi. Yavaşça yükseldiler. Mehmet'in sırtı tavandaki kablo kanalına değdi. İpek gülerek onun tişörtünü başından çıkardı. Tişört süzülerek uzaklaştı, bir yerlere kondu. Kimse bakmadı.",
+      "Altıda bir ağırlıkta her dokunuş fazla geliyordu. İpek onu biraz itse Mehmet yarım metre geri gidiyordu. Mehmet onun göğsünü öpmek için eğilse ikisi birden dönüyordu. Sonunda İpek kargo kayışlarından birini çözdü, Mehmet'in beline, sonra kendi beline doladı, tokasını tık diye taktı.",
+      "\"Prosedür kaç bu?\"",
+      "\"Henüz yazılmadı.\"",
+      "Bağlıydılar artık. Mehmet onun külotunu sıyırdı, parmakları ıslaklığını buldu. İpek dudağını ısırdı, başını geriye attı, saçları yine havalandı. Mehmet içine girdiğinde ikisi de bir an nefes almadı. Her itiş onları biraz yukarı taşıyor, sonra yerçekimi kibarca, acele etmeden, aşağı geri çağırıyordu. Bir yükseliş, bir iniş. Dünya'da bu ritmi kimse tutturamazdı.",
+      "İpek geldiğinde tavana yakın bir yerdeydiler. Tırnakları Mehmet'in sırtına gömüldü, kayış gerildi. Mehmet onu sıkıca tuttu ve bıraktı kendini. Yere ne zaman indiklerini ikisi de bilmiyordu. Yavaş bir iniş. Damla gibi.",
+      "---",
+      "21:59'da pencere açıldı. Houston'daki ses her zamanki gibi sakindi.",
+      "\"Habitat, biyometrikte bir anomali görüyoruz. Son elli dakikada ikinizin de nabzı yüz kırkın üstünde.\"",
+      "İpek mikrofona uzandı. Tişört hâlâ tavandaydı.",
+      "\"Mehmet yeni bir numune buldu. Biraz heyecanlandık.\"",
+      "\"Anlaşıldı. Numune numarası?\"",
+      "Mehmet kayıt defterini açtı. Pencerede Dünya ufkun hemen üstünde, mavi ve yarım, duruyordu.",
+      "\"Yüz on dört,\" dedi. \"Adını henüz koymadım.\""
+    ]
+  },
+  {
+    "slug": "yirmi-besinci-saat",
+    "title": "Yirmi Beşinci Saat",
+    "date": "2026-11-22",
+    "teaser": "Kasabanın saat kulesi gece yarısından sonra bir kez daha çalar. O saatte kasabada yalnızca bir kişi uyanık olmalıdır.",
+    "paragraphs": [
+      "Gölyaka'nın saat kulesi gece yarısından sonra bir kez daha çalar. Yirmi beşinci kez. Kimse duymaz, çünkü o çaldığında kasaba durur.",
+      "Mehmet kulenin bekçisiydi. İşi babasından, babası dedesinden almıştı. Kural basitti: Kuleyi her gece kur. Yirmi beşinci saatte uyanık kal. Saat bitmeden akrebi ve yelkovanı elinle bir tur döndür. Döndürmezsen ertesi gün gelmez. Bunu deneyen olmamıştı.",
+      "Yirmi yıldır o bir saat Mehmet'indi. Havada asılı kalmış yağmur damlalarının arasından yürür, fırının önünde zıplarken donmuş bir kediyi izlerdi. Bazen kahvehaneye girip tavla zarlarına bakardı. Zarlar havada, düşmeyi beklerdi.",
+      "O gece meydana indiğinde birinin yürüdüğünü gördü.",
+      "Kadın paltosunun altına pijama giymişti. Ayağında terlik vardı. Donmuş dünyaya Mehmet'ten daha az şaşkın bakıyordu.",
+      "\"Sen de mi uyuyamıyorsun?\" dedi.",
+      "Adı Defne'ydi. Otuz sekiz yaşındaydı, çevirmendi, kasabaya yazın taşınmıştı ve aylardır uyuyamıyordu. Kulenin yirmi beşinci vuruşunu duymuştu. Herkes uyurken o duymuştu.",
+      "\"Bu bir saat,\" dedi Mehmet, \"benim olması gerekiyordu.\"",
+      "\"Paylaşırız.\"",
+      "Birlikte yürüdüler. Defne havada duran bir yağmur damlasına parmağını değdirdi, damla parmağının ucunda kaldı. Balkonda öpüşürken donmuş bir çiftin altından geçtiler. Defne durup baktı. \"Onlar için ne kadar sürüyor bu?\"",
+      "\"Hiç.\"",
+      "\"Yazık.\" Mehmet'e döndü. \"Ya bizim için?\"",
+      "---",
+      "Kulenin içi yağ, pirinç ve eski tahta kokardı. Dişliler duvar boyunca uzanıyordu, hepsi duruyordu. Sadece büyük sarkaç sallanıyordu, çünkü Mehmet ona dokunmuştu. O bir saatte Mehmet neye dokunursa o uyanırdı.",
+      "Defne bunu fark etti. Paltosunu çıkardı. \"Bana da dokun.\"",
+      "Pijamasının düğmelerini açarken Mehmet'in elleri titremiyordu ama çok yavaştı. Bir saat birden az gelmişti. Defne'nin teni kasım gecesinden kalma bir soğuktaydı. Mehmet avuçlarını göğüslerine koydu, ısınana kadar tuttu. Defne onun gömleğini çekti, kemerini açtı, eli onu buldu.",
+      "Dişlilerin arasındaki dar tahta platforma uzandılar. Defne bacaklarını açtı ve onu kendine çekti. Mehmet içine girdiğinde yukarıda bir dişli tık diye döndü. Sonra bir tane daha. Mehmet durdu. Defne gülerek kalçalarını kavradı, kendine bastırdı. Tık. Onlar hareket ettikçe kule uyanıyordu. Dişliler birbirini yakalıyor, makaralar dönüyor, eski mekanizma onların ritmini sayıyordu.",
+      "Defne geldiğinde bütün dişliler birden döndü ve kule, hiç çalmaması gereken bir anda, bir kez çaldı. Mehmet onun boynuna gömülmüş, kendini bıraktı. Bir süre konuşmadılar. Sarkaç gidip geliyordu.",
+      "---",
+      "Saat bitmeden akrebi ve yelkovanı birlikte döndürdüler. Defne'nin eli Mehmet'in elinin üstündeydi.",
+      "Sabah Mehmet kuleyi kontrol ettiğinde saat on bir dakika geri kalmıştı. Yirmi beşinci saat yetmiş bir dakika sürmüştü.",
+      "Ayarlamadı."
+    ]
+  },
+  {
+    "slug": "kayip-ruyalar-burosu",
+    "title": "Kayıp Rüyalar Bürosu",
+    "date": "2026-11-21",
+    "teaser": "Kaybolan rüyalar bir yere gider. Mehmet o yerde, üçüncü kattaki raflarda çalışır.",
+    "paragraphs": [
+      "Kaybolan rüyalar bir yere gider. Uyanınca hatırlayamadığın, ucunu yakalayıp kaçırdığın, yıllarca görüp bir gece görmeyi bıraktığın rüyalar. Hepsi Kayıp Rüyalar Bürosu'na gelir, etiketlenir, kavanozlara konur, raflara dizilir.",
+      "Mehmet büroda on bir yıldır çalışıyordu. Üçüncü kat: deniz ve su rüyaları. Kavanozların tozunu alır, etiketleri kontrol eder, ara sıra birinin kapağını aralayıp kokusuna bakardı. Deniz rüyaları tuz ve güneş kremi kokardı. Kâbuslar bodrumdaydı, onlarla başkası ilgilenirdi.",
+      "Kadın kapanışa on dakika kala geldi. Kırk yaşlarındaydı. Saçları ıslaktı. Dışarıda yağmur yoktu.",
+      "\"Bir rüyamı kaybettim,\" dedi. \"Üç yıl önce.\"",
+      "Mehmet formu uzattı. Ad soyad: Asya Karadeniz. Kaybolma tarihi: Mart, bir salı. \"Rüyanın kısa tarifi\" kısmına Asya uzun süre baktı, sonra yazdı: Zemini deniz olan bir oda. Kapı yok. Biri var ama yüzünü hiç göremiyorum.",
+      "\"Kaç kez gördünüz?\"",
+      "\"On iki yıl boyunca, ayda bir. Sonra bir gece gelmedi.\"",
+      "Mehmet merdiveni en üst rafa dayadı. Kavanozlar ışıkta hafifçe dalgalanıyordu. Birinin etiketi solmuştu: A. K. Oda, deniz, yüz yok. Kapağın altında bir şey kıpırdıyordu. Kavanozu indirdi, tezgaha koydu.",
+      "\"Bu mu?\"",
+      "Asya'nın gözleri doldu. \"Açabilir miyim?\"",
+      "\"Burada açılmaz. Kural.\" Mehmet durdu. \"Açılırsa odada kim varsa rüyanın içinde kalır. Rüya bitene kadar.\"",
+      "Asya kapağı çevirdi.",
+      "---",
+      "Su önce ayak bileklerine geldi. Ilık, yeşil, berrak. Büronun tahta zemini kayboldu, rafların altı deniz oldu, sonra raflar da gitti. Dört duvar kaldı, bir pencere kaldı, ışık kaldı. Kapı yoktu.",
+      "Asya odanın ortasında duruyordu. Su beline kadardı, eteği suyun üstünde açılmıştı. Mehmet'e baktı. Uzun süre baktı.",
+      "\"Senmişsin,\" dedi.",
+      "Mehmet bir şey diyemedi. Rüya ona her şeyi zaten anlatmıştı. On iki yıl boyunca ayda bir, bu kadının yüzünü hiç görmeden bekleyen oymuş. İş tanımında yoktu.",
+      "Asya suyun içinden ona yürüdü. Elbisesini başından çıkarıp bıraktı, elbise yavaşça batıp kayboldu. Mehmet'in gömleğini çözdü. Ilık su göğüslerine kadar yükselmişti, deniz ağırlıklarını taşıyordu. Mehmet onu kucağına aldı, Asya bacaklarını onun beline doladı.",
+      "Mehmet suyun içinde onun içine girdiğinde Asya alnını onun alnına dayadı ve gözlerini kapamadı. Bu kez yüzü görmek istiyordu. Yavaş hareket ettiler. Her hareket küçük bir dalga yapıyor, dalga duvarlara çarpıp onlara geri dönüyordu. Pencerenin dışında rüyanın gökyüzü gün batımı rengindeydi. Asya geldiğinde oda bir an karardı, sonra bütün su ışıdı. Mehmet yüzünü onun saçlarına gömdü ve hemen ardından geldi.",
+      "---",
+      "Kendilerine geldiklerinde büronun zeminindeydiler, giysileri kuruydu. Kavanoz boştu. Asya'nın saçları hâlâ ıslaktı.",
+      "Teslim tutanağını imzaladı. Kapıdan çıkarken döndü. \"Bu gece gelir mi?\"",
+      "\"Sahibine teslim edildi,\" dedi Mehmet. \"Ne zaman istersen gelir.\"",
+      "Kadın gittikten sonra Mehmet tutanağın açıklama kısmına kurşun kalemle bir satır yazdı: Teslim edildi. İçinde bir kişi fazla."
+    ]
+  },
+  {
+    "slug": "ters-kar",
+    "title": "Ters Kar",
+    "date": "2026-11-20",
+    "teaser": "Kızılkar'da yılda bir gece kar yukarı yağar. Ankara'dan ölçmeye gelen meteorolog, otelin gece resepsiyonistine rastlar.",
+    "paragraphs": [
+      "Kızılkar'da yılda bir gece kar yukarı yağar. Sokaktaki kar kalkar. Saçaklardan, araba camlarından, köpeklerin sırtından kopar, yavaş yavaş göğe gider. Ertesi sabah kasaba tertemiz uyanır. Nedenini kimse bilmez. Kasabalı merak da etmez.",
+      "Otel Ayaz'ın on iki odası vardı ve o gece biri hariç hepsi boştu. Yedi numarada Ankara'dan gelen bir meteorolog kalıyordu: Ece Tunalı. Otuz dokuz yaşında, iki valiz ölçüm aleti, bir termos ve hiç gülmeyen bir yüz.",
+      "Mehmet gece resepsiyonistiydi. Kırk üç yaşındaydı, otuz ters kar gecesi görmüştü ve bir kez bile ölçmeyi düşünmemişti.",
+      "Saat on bire doğru Ece aşağı indi. \"Nereden en iyi görünür?\"",
+      "\"Çatıdan. Ama sırtüstü yatmanız lazım.\"",
+      "\"Ölçüm yapacağım.\"",
+      "\"Sırtüstü yatarak yapın.\"",
+      "---",
+      "Çatıya iki battaniye, bir termos ve Ece'nin aletleri çıktı. Gece yarısına yedi dakika kala kasaba sessizleşti. Sonra ilk kar tanesi Mehmet'in botundan kalktı.",
+      "Ece aletlerini unuttu. Kar her yerden yükseliyordu: sokaklardan, çatılardan, battaniyelerinin üstünden, Mehmet'in sakalından. Sırtüstü yatıyorlardı ve kar yüzlerinin yanından geçip yıldızların arasında kayboluyordu. Sanki gökyüzüne doğru düşüyorlardı.",
+      "Ece'nin eli battaniyenin altında Mehmet'in elini buldu. Elleri buz gibiydi.",
+      "\"Bunu kaç kez gördün?\"",
+      "\"Otuz.\"",
+      "\"Birini bile bu kadar yakından izledin mi?\"",
+      "Mehmet ona döndü. Ece'nin kirpiklerindeki kar taneleri birer birer koptu, uçup gitti. \"Hayır,\" dedi.",
+      "---",
+      "Yedi numaranın kaloriferi bozuktu. Mehmet biliyordu, Ece'ye söylememişti. Şimdi ikisi de biliyordu.",
+      "Paltoları, kazakları, termal içlikleri tek tek çıkardılar. Her katman bir öncekinden uzun sürdü, çünkü her birinin altında ısıtılması gereken bir yer vardı. Mehmet onu yatağa yatırdı, yorganı üstlerine bir mağara gibi çekti. Ece'nin teni soğuktu, Mehmet'in ağzı sıcaktı. Göğüslerinden karnına, karnından bacaklarının arasına indi. Ece'nin parmakları yorganı sıktı. Mehmet onu dili ve parmaklarıyla, bir yeri ısıtır gibi sabırla açtı. Ece geldiğinde yorganın altında kendi nefeslerinden bir sis oluşmuştu.",
+      "Sonra Ece onu üstüne çekti. Mehmet içine girdiğinde pencerenin dışında kar hâlâ yükseliyordu. Yavaş hareket ettiler, yorgan sırtlarında bir tepe gibiydi. Ece onun kulağına sayılar fısıldadı: nem, basınç, sıcaklık. Uydurduğunu ikisi de biliyordu. Sayılar yükseldikçe Mehmet hızlandı. Son sayıyı Ece söyleyemedi.",
+      "---",
+      "Ertesi sabah Kızılkar tertemizdi. Ece raporunu kahvaltı masasında yazdı. Mehmet omzunun üstünden okudu.",
+      "Gözlem: Kar yukarı yağdı. Ölçüm: Yapılamadı. Not: Gelecek yıl tekrarlanmalı. Aynı oda."
+    ]
+  },
+  {
+    "slug": "akort",
+    "title": "Akort",
+    "date": "2026-11-19",
+    "teaser": "Üç yıldır açılmamış bir piyano, salı akşamı yedide gelen bir akortçu ve birbirini bulmaya çalışan iki tel.",
+    "paragraphs": [
+      "Akortçu salı akşamı yedide geldi. Selin kapıyı açarken piyanonun üç yıldır açılmadığını söyledi, özür diler gibi.",
+      "\"Belli olur,\" dedi adam. Adı Mehmet'ti. Telefondaki sesi daha yaşlı gelmişti. Kırkların başı, kolları dirseğe kadar sıvanmış bir gömlek, elinde eskimiş deri bir çanta.",
+      "Piyano salonun köşesinde, annesinin bıraktığı gibi duruyordu. Üstünde bir örtü, örtünün üstünde çerçeveli bir fotoğraf. Mehmet fotoğrafı bakışıyla sordu, Selin alıp kitaplığa koydu. Örtüyü katladı. Kapağı kaldırdığında tozun kokusu yayıldı.",
+      "Mehmet bir la'ya bastı. Ses odada yamuk bir çizgi gibi asılı kaldı.",
+      "\"Çok mu kötü?\"",
+      "\"Kötü değil. Unutmuş sadece.\"",
+      "Selin şarap açtı. Kendine bir kadeh koydu, ikinci kadehi masaya bıraktı, isterse diye. Mehmet almadı. Ön paneli söktü, çekiçlerin önüne keçe bir şerit yerleştirdi, anahtarı pime oturttu. Sonra hiç konuşmadan çalışmaya başladı.",
+      "Selin kanepeden onu izledi. İzlemek istemiyordu aslında, kitap okuyacaktı. Ama adamın elleri vardı. Anahtarı çevirirken bileğindeki damar kalkıyor, parmakları tuşun üstünde bir an bekliyor, sonra bırakıyordu. Bir notaya on, on beş kez basıyordu. Her seferinde başını hafifçe yana eğiyordu, birinin fısıltısını dinler gibi.",
+      "\"Neyi dinliyorsun?\" diye sordu sonunda.",
+      "\"Vuruşu.\" Bir tuşa bastı. \"Her notada iki üç tel var. Neredeyse aynı sese akortluysalar birbirlerine çarpıyorlar. Duyuyor musun? Sesin içinde bir dalgalanma.\"",
+      "Duymuyordu. Söyledi.",
+      "\"Buraya gel.\"",
+      "Tabureye oturdu. Tabure iki kişilik değildi. Kalçası onun kalçasına değdi, ikisi de kıpırdamadı. Mehmet eliyle bir tuşu gösterdi. \"Buna bas. Ben söyleyene kadar basmaya devam et.\"",
+      "Bastı. Ses titriyordu, şimdi duyuyordu: uzaktan gelen bir motor gibi, yavaşlayıp hızlanan bir şey. Mehmet anahtarı milim milim çevirdi. Dalgalanma yavaşladı. Daha da yavaşladı. Sonra durdu. Ses tek, düz ve temiz kaldı.",
+      "Selin'in parmağı hâlâ tuştaydı.",
+      "\"Tamam,\" dedi Mehmet. Sesi alçalmıştı. \"Bırakabilirsin.\"",
+      "Bırakmadı. Ona döndü. Bu kadar yakından yüzünün bir yanı lambanın ışığında, öbür yanı karanlıktaydı. Dışarıda yağmur başlamıştı, cama ince ince vuruyordu.",
+      "\"Kaç tane kaldı?\" dedi Selin.",
+      "\"Seksen sekiz tuş var. Sekiz tane yaptım.\"",
+      "\"Çok var.\"",
+      "\"Çok var.\"",
+      "Onu Selin öptü. Mehmet bir an kıpırdamadı, anahtar hâlâ elindeydi. Sonra anahtarı piyanonun üstüne bıraktı, metal tahtaya küçük bir ses çıkardı, ve eli Selin'in boynunun arkasına gitti.",
+      "---",
+      "Acele etmediler. Belki de Mehmet aceleyi bilmiyordu. Selin'in bluzunun düğmelerini tek tek açtı, her birinde biraz durarak, bir şeyi dinliyormuş gibi. Selin onun gömleğini çekip başından çıkardı, düğmelerle uğraşacak sabrı yoktu. Mehmet gülümsedi. Ten teni bulduğunda ikisi de bir an nefesini tuttu.",
+      "Kanepeye kadar gidemediler. Halının üstünde, piyanonun dibinde, Selin'in sırtı yerdeydi ve Mehmet'in ağzı göğüslerindeydi. Dili yavaş, sabırlı, bir notayı arayan biri gibi geziniyordu. Selin parmaklarını onun saçlarına geçirdi, aşağı doğru itti. Mehmet anladı.",
+      "Eteğini sıyırdı, iç çamaşırını bacaklarından sıyırıp aldı. Önce dizlerinin içini öptü, sonra uyluklarını. Oraya varmadan bir süre bekledi, Selin kalçasını kaldırıp onu aramak zorunda kalana kadar. Dili ona değdiğinde Selin'in ağzından tanımadığı bir ses çıktı. Mehmet durmadı. Ritmini bulmuştu ve değiştirmiyordu. Selin'in nefesine, kalçasının hareketine, parmaklarının saçlarında sıkılıp gevşemesine kulak veriyordu. Selin geldiğinde başı geriye düştü, eli halının saçaklarını avuçladı. Bir süre ikisi de kıpırdamadı.",
+      "Sonra Selin onu yukarı çekti. Pantolonunun kemerini çözdü, onu eline aldı, sertliğini avucunda hissetti. Mehmet gözlerini kapadı. Selin onu yere yatırdı, üstüne çıktı ve yavaşça, santim santim, içine aldı. İkisi de durdu. Yağmur cama vuruyordu. Piyanonun açık gövdesinde, yerdeki titreşimle belli belirsiz bir tel ses verdi.",
+      "Selin hareket etmeye başladı. Önce yavaş, sonra ona göre, sonra kendine göre. Mehmet'in elleri kalçalarındaydı, onu yönlendirmiyor, sadece tutuyordu. Bir ara gözlerini açtı ve Selin'e öyle baktı ki Selin hızlandı. İkinci kez geldiğinde onun göğsüne kapandı ve Mehmet onu sıkıca tutup kendini bıraktı, alnını Selin'in omzuna dayayarak, adını söyleyerek.",
+      "---",
+      "Sabah yedide Selin uyandığında kanepedeydi, üstünde annesinin örtüsü. Salondan piyano sesi geliyordu. Bir nota. Aynı nota. Tekrar tekrar.",
+      "Mehmet tabureye oturmuştu, gömleği yine dirseklerine kadar sıvalıydı. Ona baktı.",
+      "\"Seksen sekiz tuş,\" dedi Selin.",
+      "\"Seksen bir tane kaldı.\"",
+      "Saat on bire doğru bitirdi. Çantasını topladı, ücretini aldı, kapıda bir kartvizit uzattı. Kartın arkasına kurşun kalemle bir şey yazmıştı.",
+      "Kapı kapandıktan sonra Selin piyanonun başına oturdu. Annesinin her pazar çaldığı parçayı, yarım yamalak hatırladığı haliyle çaldı. Hiçbir nota titremiyordu.",
+      "Sonra kartı çevirdi.",
+      "Altı ayda bir akort ister."
+    ]
+  }
+]
+</script>
+
+<script>
+/* Açılış müziği: tarayıcıda üretilen yavaş, buğulu bir parça (Fm9 – Dbmaj9 – Bbm9 – C7b9, 64 BPM)
+   ve aralarda Türkçe bir kadın sesinin fısıldadığı "Mehmet... Mehmet." */
+var Music = (function () {
+  var ctx = null, master, bus, keys, verbIn, timer = null, nextTime = 0, step = 0, playing = false, noiseBuf;
+  var BPM = 64, EIGHTH = 60 / BPM / 2;
+  var PROG = [[53, 56, 60, 63, 67], [49, 53, 56, 60, 63], [46, 49, 53, 56, 60], [48, 52, 55, 58, 61]];
+  function hz(m) { return 440 * Math.pow(2, (m - 69) / 12); }
+
+  function build() {
+    var AC = window.AudioContext || window.webkitAudioContext;
+    if (!AC) return false;
+    ctx = new AC();
+    var comp = ctx.createDynamicsCompressor();
+    comp.threshold.value = -18; comp.ratio.value = 3;
+    comp.connect(ctx.destination);
+    master = ctx.createGain(); master.gain.value = 0; master.connect(comp);
+    bus = ctx.createGain(); bus.gain.value = 1; bus.connect(master);
+    // reverb
+    var len = ctx.sampleRate * 3.2, ir = ctx.createBuffer(2, len, ctx.sampleRate);
+    for (var c = 0; c < 2; c++) { var d = ir.getChannelData(c); for (var i = 0; i < len; i++) d[i] = (Math.random() * 2 - 1) * Math.pow(1 - i / len, 3); }
+    var conv = ctx.createConvolver(); conv.buffer = ir;
+    verbIn = ctx.createGain(); verbIn.gain.value = 0.45;
+    verbIn.connect(conv); conv.connect(master);
+    bus.connect(verbIn);
+    // keys with tremolo
+    keys = ctx.createGain(); keys.gain.value = 0.75;
+    var lfo = ctx.createOscillator(), lfoAmt = ctx.createGain();
+    lfo.frequency.value = 4.2; lfoAmt.gain.value = 0.22; lfo.connect(lfoAmt); lfoAmt.connect(keys.gain); lfo.start();
+    var warm = ctx.createBiquadFilter(); warm.type = "lowpass"; warm.frequency.value = 2400;
+    keys.connect(warm); warm.connect(bus);
+    // noise
+    noiseBuf = ctx.createBuffer(1, ctx.sampleRate, ctx.sampleRate);
+    var nd = noiseBuf.getChannelData(0); for (var j = 0; j < nd.length; j++) nd[j] = Math.random() * 2 - 1;
+    return true;
+  }
+
+  function ep(m, t, dur, vel) {
+    var g = ctx.createGain();
+    g.gain.setValueAtTime(0.0001, t);
+    g.gain.linearRampToValueAtTime(vel, t + 0.015);
+    g.gain.exponentialRampToValueAtTime(0.0001, t + dur);
+    g.connect(keys);
+    [[1, 1, 0], [2, 0.22, 4], [3, 0.06, -5]].forEach(function (p) {
+      var o = ctx.createOscillator(), a = ctx.createGain();
+      o.type = "sine"; o.frequency.value = hz(m) * p[0]; o.detune.value = p[2]; a.gain.value = p[1];
+      o.connect(a); a.connect(g); o.start(t); o.stop(t + dur + 0.05);
+    });
+  }
+  function bass(m, t, dur) {
+    var o = ctx.createOscillator(), g = ctx.createGain(), f = ctx.createBiquadFilter();
+    o.type = "triangle"; o.frequency.value = hz(m); f.type = "lowpass"; f.frequency.value = 380;
+    g.gain.setValueAtTime(0.0001, t); g.gain.linearRampToValueAtTime(0.32, t + 0.04); g.gain.exponentialRampToValueAtTime(0.0001, t + dur);
+    o.connect(f); f.connect(g); g.connect(master); o.start(t); o.stop(t + dur + 0.05);
+  }
+  function kick(t) {
+    var o = ctx.createOscillator(), g = ctx.createGain();
+    o.frequency.setValueAtTime(95, t); o.frequency.exponentialRampToValueAtTime(42, t + 0.18);
+    g.gain.setValueAtTime(0.45, t); g.gain.exponentialRampToValueAtTime(0.0001, t + 0.35);
+    o.connect(g); g.connect(master); o.start(t); o.stop(t + 0.4);
+  }
+  function noise(t, type, freq, vol, dec, wet) {
+    var s = ctx.createBufferSource(), f = ctx.createBiquadFilter(), g = ctx.createGain();
+    s.buffer = noiseBuf; f.type = type; f.frequency.value = freq;
+    g.gain.setValueAtTime(vol, t); g.gain.exponentialRampToValueAtTime(0.0001, t + dec);
+    s.connect(f); f.connect(g); g.connect(wet ? bus : master); s.start(t); s.stop(t + dec + 0.05);
+  }
+
+  function pickVoice() {
+    if (!("speechSynthesis" in window)) return null;
+    var vs = speechSynthesis.getVoices() || [];
+    var tr = vs.filter(function (v) { return /^tr/i.test(v.lang); });
+    var fem = tr.filter(function (v) { return /yelda|filiz|seda|emel|female|kad/i.test(v.name); });
+    return fem[0] || tr[0] || null;
+  }
+  function whisper() {
+    if (!playing || !("speechSynthesis" in window)) return;
+    try {
+      var u = new SpeechSynthesisUtterance("Mehmet...  Mehmet.");
+      var v = pickVoice();
+      if (v) { u.voice = v; u.lang = v.lang; } else { u.lang = "tr-TR"; }
+      u.rate = 0.55; u.pitch = 0.95; u.volume = 0.6;
+      speechSynthesis.speak(u);
+    } catch (e) {}
+  }
+
+  function schedule() {
+    while (nextTime < ctx.currentTime + 0.25) {
+      var t = nextTime, s = step % 64, inBar = step % 8, chord = PROG[Math.floor(s / 16)];
+      if (s % 16 === 0) chord.forEach(function (m, i) { ep(m, t + i * 0.025, EIGHTH * 14, 0.11); });
+      if (s % 16 === 11) chord.slice(1).forEach(function (m, i) { ep(m + 12 * (i > 2 ? 0 : 0), t + i * 0.02, EIGHTH * 5, 0.05); });
+      if (inBar === 0) bass(chord[0] - 12, t, EIGHTH * 3.5);
+      if (inBar === 3) bass(chord[0] - 12, t, EIGHTH * 1.2);
+      if (inBar === 6) bass(chord[2] - 12, t, EIGHTH * 1.8);
+      if (inBar === 0 || inBar === 5) kick(t);
+      if (inBar === 2 || inBar === 6) noise(t, "bandpass", 1900, 0.07, 0.14, true);
+      if (inBar % 2 === 1) noise(t + EIGHTH * 0.12, "highpass", 7500, 0.025, 0.05, false);
+      if (s === 24 || s === 56) {
+        var delay = Math.max(0, (t - ctx.currentTime) * 1000);
+        setTimeout(whisper, delay);
+      }
+      nextTime += EIGHTH; step++;
+    }
+  }
+
+  function start() {
+    if (playing) return;
+    if (!ctx && !build()) return;
+    if (ctx.state === "suspended") ctx.resume();
+    playing = true;
+    if ("speechSynthesis" in window) { try { speechSynthesis.getVoices(); } catch (e) {} }
+    var now = ctx.currentTime;
+    master.gain.cancelScheduledValues(now);
+    master.gain.setValueAtTime(master.gain.value, now);
+    master.gain.linearRampToValueAtTime(0.7, now + 4);
+    nextTime = now + 0.1; step = 0;
+    timer = setInterval(schedule, 60);
+    ui();
+  }
+  function stop() {
+    if (!playing) return;
+    playing = false;
+    clearInterval(timer);
+    try { speechSynthesis.cancel(); } catch (e) {}
+    var now = ctx.currentTime;
+    master.gain.cancelScheduledValues(now);
+    master.gain.setValueAtTime(master.gain.value, now);
+    master.gain.linearRampToValueAtTime(0, now + 0.6);
+    setTimeout(function () { if (!playing) ctx.suspend(); }, 700);
+    ui();
+  }
+  function ui() {
+    var b = document.getElementById("sound");
+    b.classList.toggle("on", playing);
+    b.setAttribute("aria-pressed", playing ? "true" : "false");
+    document.getElementById("sound-label").textContent = playing ? "Müziği kapat" : "Müziği aç";
+  }
+  return { start: start, stop: stop, isPlaying: function () { return playing; } };
+})();
+
+(function () {
+  var GATE_KEY = "gumus-saatler-18", MUTE_KEY = "gumus-saatler-sessiz";
+  function get(k) { try { return localStorage.getItem(k); } catch (e) { return null; } }
+  function set(k, v) { try { localStorage.setItem(k, v); } catch (e) {} }
+
+  var gate = document.getElementById("gate");
+  if (get(GATE_KEY) === "1") gate.hidden = true;
+  document.getElementById("gate-yes").addEventListener("click", function () {
+    set(GATE_KEY, "1");
+    gate.hidden = true;
+    if (get(MUTE_KEY) !== "1") Music.start();
+  });
+  document.getElementById("gate-no").addEventListener("click", function () {
+    document.getElementById("gate-msg").hidden = false;
+  });
+
+  // Tarayıcılar sesi ilk dokunuştan önce çalmaya izin vermez. Geri dönen okur için müzik ilk dokunuşta başlar.
+  function firstTouch(e) {
+    document.removeEventListener("pointerdown", firstTouch, true);
+    document.removeEventListener("keydown", firstTouch, true);
+    if (e.target && e.target.closest && e.target.closest("#sound, #gate")) return;
+    if (get(MUTE_KEY) !== "1" && gate.hidden) Music.start();
+  }
+  document.addEventListener("pointerdown", firstTouch, true);
+  document.addEventListener("keydown", firstTouch, true);
+
+  document.getElementById("sound").addEventListener("click", function () {
+    if (Music.isPlaying()) { Music.stop(); set(MUTE_KEY, "1"); }
+    else { Music.start(); set(MUTE_KEY, "0"); }
+  });
+
+  var stories = [];
+  try { stories = JSON.parse(document.getElementById("stories").textContent); } catch (e) {}
+  stories.sort(function (a, b) { return a.date < b.date ? 1 : -1; });
+
+  var months = ["Ocak","Şubat","Mart","Nisan","Mayıs","Haziran","Temmuz","Ağustos","Eylül","Ekim","Kasım","Aralık"];
+  function fmt(d) { var p = d.split("-"); return +p[2] + " " + months[+p[1] - 1] + " " + p[0]; }
+  function mins(s) { var w = s.paragraphs.join(" ").split(/\s+/).length; return Math.max(1, Math.round(w / 200)) + " dk okuma"; }
+  function esc(t) { return t.replace(/[&<>"]/g, function (c) { return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]; }); }
+
+  var view = document.getElementById("view");
+
+  function renderList() {
+    var html = '<div class="intro-row"><div><h2 class="section-label">Hikayeler</h2><p class="intro">Gece yarısından sonra okunacak kısa hikayeler. Hepsinde aynı adam var: Mehmet. Her gün bir yenisi.</p></div><button class="dice" id="random" type="button"><span class="d" aria-hidden="true">⚄</span>Rastgele hikaye</button></div><ol class="toc">';
+    stories.forEach(function (s) {
+      html += '<li><a href="#' + s.slug + '"><span class="meta">' + fmt(s.date) + '<br>' + mins(s) + '</span><span><h2>' + esc(s.title) + '</h2><p>' + esc(s.teaser) + '</p></span></a></li>';
+    });
+    view.innerHTML = html + "</ol>";
+    document.body.classList.remove("reading");
+  }
+
+  function renderStory(s) {
+    var body = s.paragraphs.map(function (p) { return p === "---" ? "<hr>" : "<p>" + esc(p) + "</p>"; }).join("");
+    view.innerHTML = '<article><a class="back" href="#">← Tüm hikayeler</a><h2>' + esc(s.title) + '</h2><div class="storymeta"><span>' + fmt(s.date) + '</span><span>' + mins(s) + '</span><span>Mehmet BIGSILVER</span></div><div class="prose">' + body + '</div><p class="signoff">— M. B.</p></article>';
+    document.body.classList.add("reading");
+    window.scrollTo(0, 0);
+  }
+
+  function route() {
+    var slug = decodeURIComponent(location.hash.slice(1));
+    var s = stories.filter(function (x) { return x.slug === slug; })[0];
+    if (s) renderStory(s); else renderList();
+  }
+  window.addEventListener("hashchange", route);
+  route();
+})();
+</script>
+
+<script>
+/* Perde, yıldızlar, parıltılar, rastgele hikaye */
+(function () {
+  var reduce = window.matchMedia && matchMedia("(prefers-reduced-motion: reduce)").matches;
+  var gate = document.getElementById("gate");
+  var curtain = document.getElementById("curtain");
+
+  function openCurtain() {
+    if (!curtain || curtain.hidden) return;
+    curtain.classList.add("open");
+    setTimeout(function () { curtain.hidden = true; }, 2000);
+  }
+  if (reduce) curtain.hidden = true;
+  else if (gate.hidden) setTimeout(openCurtain, 350);
+  document.getElementById("gate-yes").addEventListener("click", function () { setTimeout(openCurtain, 150); });
+
+  // Yıldızlar
+  var sky = document.getElementById("sky"), sc = sky.getContext("2d");
+  var fx = document.getElementById("fx"), fc = fx.getContext("2d");
+  var W = 0, H = 0, DPR = 1, stars = [], sparks = [];
+  function size() {
+    DPR = Math.min(window.devicePixelRatio || 1, 2);
+    W = window.innerWidth; H = window.innerHeight;
+    [sky, fx].forEach(function (c) { c.width = W * DPR; c.height = H * DPR; });
+    sc.setTransform(DPR, 0, 0, DPR, 0, 0); fc.setTransform(DPR, 0, 0, DPR, 0, 0);
+    var n = Math.round(W * H / 9000);
+    stars = [];
+    for (var i = 0; i < n; i++) stars.push({ x: Math.random() * W, y: Math.random() * H, r: Math.random() * 1.3 + .2, p: Math.random() * 6.28, s: Math.random() * .02 + .005, v: Math.random() * .06 + .01 });
+  }
+  size(); window.addEventListener("resize", size);
+
+  function token(name) { return getComputedStyle(document.documentElement).getPropertyValue(name).trim() || "#fff"; }
+  var silver = token("--silver"), neon = token("--neon"), lastTok = 0;
+
+  // Parıltılar
+  var fine = window.matchMedia && matchMedia("(pointer: fine)").matches;
+  function burst(x, y, n, speed) {
+    for (var i = 0; i < n; i++) {
+      var a = Math.random() * 6.28, v = Math.random() * speed;
+      sparks.push({ x: x, y: y, vx: Math.cos(a) * v, vy: Math.sin(a) * v - .3, life: 1, r: Math.random() * 2 + 1, c: Math.random() < .5 ? neon : silver });
+    }
+  }
+  if (!reduce && fine) {
+    window.addEventListener("pointermove", function (e) { if (sparks.length < 260) burst(e.clientX, e.clientY, 2, 1.2); });
+  }
+  if (!reduce) {
+    window.addEventListener("pointerdown", function (e) { burst(e.clientX, e.clientY, 18, 3.2); });
+  }
+
+  var t0 = 0;
+  function frame(t) {
+    if (t - lastTok > 2000) { silver = token("--silver"); neon = token("--neon"); lastTok = t; }
+    sc.clearRect(0, 0, W, H);
+    sc.fillStyle = silver;
+    for (var i = 0; i < stars.length; i++) {
+      var s = stars[i];
+      if (!reduce) { s.p += s.s; s.y -= s.v; if (s.y < -2) { s.y = H + 2; s.x = Math.random() * W; } }
+      sc.globalAlpha = .25 + .45 * (0.5 + 0.5 * Math.sin(s.p));
+      sc.beginPath(); sc.arc(s.x, s.y, s.r, 0, 6.28); sc.fill();
+    }
+    sc.globalAlpha = 1;
+    fc.clearRect(0, 0, W, H);
+    for (var j = sparks.length - 1; j >= 0; j--) {
+      var p = sparks[j];
+      p.x += p.vx; p.y += p.vy; p.vy += .03; p.life -= .022;
+      if (p.life <= 0) { sparks.splice(j, 1); continue; }
+      fc.globalAlpha = p.life; fc.fillStyle = p.c;
+      fc.shadowColor = p.c; fc.shadowBlur = 8;
+      fc.beginPath(); fc.arc(p.x, p.y, p.r * p.life, 0, 6.28); fc.fill();
+    }
+    fc.globalAlpha = 1; fc.shadowBlur = 0;
+    if (!reduce) requestAnimationFrame(frame);
+  }
+  requestAnimationFrame(frame);
+
+  // Rastgele hikaye
+  document.addEventListener("click", function (e) {
+    var b = e.target.closest && e.target.closest("#random");
+    if (!b) return;
+    var list = [];
+    try { list = JSON.parse(document.getElementById("stories").textContent).map(function (s) { return s.slug; }); } catch (err) {}
+    if (!list.length) return;
+    b.classList.add("roll");
+    setTimeout(function () { location.hash = list[Math.floor(Math.random() * list.length)]; }, 550);
+  });
+})();
+</script>
+
+<script>
+/* Mehmet'e Sor: önceden yazılmış flörtöz cevaplar, anahtar kelimeye göre seçilir. Yapay zeka değildir.
+   Fotoğraflar yalnızca ziyaretçinin tarayıcısında gösterilir, hiçbir yere gönderilmez. */
+(function () {
+  var BOT = [
+    { k: ["merhaba", "selam", "slm", "hey", "naber", "iyi aksamlar", "hello", "hi"], a: [
+      "Selam. Seni bekliyordum ama bunu söylemeyecektim.",
+      "Geldin. Gece şimdi başladı.",
+      "Merhaba güzel insan. Otur, kalk deme bana.",
+      "Hoş geldin. Sesini duyamıyorum ama yazışın bile hoş.",
+      "Selam. Bir dakika, saçımı düzelteyim.",
+      "Naber mi? Sen yazınca daha iyi.",
+      "İyi akşamlar. Kahveni nasıl içiyorsun? Sormak için soruyorum.",
+      "Selam. Bu saatte gelen insanları severim. Seni daha çok."
+    ]},
+    { k: ["nasilsin", "nasil gidiyor", "iyi misin", "napiyorsun", "ne yapiyorsun", "ne yapiyosun", "napiyosun"], a: [
+      "Az önce iyiydim, şimdi daha iyiyim.",
+      "Seni gördüm, nasıl olayım?",
+      "Yorgunum ama senin için uyanığım.",
+      "Senden haber bekliyordum, geldi. İyiyim.",
+      "Bir saat önce piyano akort ettim. Şimdi kalbimi akort ediyorum.",
+      "Seni düşünüyorum. Klişe ama doğru.",
+      "Kule saatini kuruyorum. Yirmi beşinci saati sana ayırdım.",
+      "Şu an mı? Seninle konuşuyorum ve gülümsüyorum. Başka bir şey yapmıyorum."
+    ]},
+    { k: ["kimsin", "sen kim", "kendini anlat", "mehmet kim", "tanit", "kim bu", "kim olduğun"], a: [
+      "Mehmet. Kırklarında, sakallı, iyi dinleyen biri. Gerisini yakından öğrenirsin.",
+      "Her hikayedeki adam. Bu gece de seninkindeyim.",
+      "Senin geç saatlerin.",
+      "Ellerini kullanmayı bilen bir adam. Piyano, saat, kamera. Başka şeyler de.",
+      "Kim olduğumu sorma, nerede olduğumu sor. Cevap: burada, seninle.",
+      "Gümüş Saatler'in sahibi değilim, kiracısıyım. Ama sen gelince ev sahibi gibi hissediyorum."
+    ]},
+    { k: ["kac yas", "yasin", "yasindasin", "yaslisin", "yasli misin", "genc misin"], a: [
+      "Kırk iki. Şarap gibi, demlenmiş.",
+      "Yeterince büyük, yeterince sabırlı.",
+      "Kırklı yaşlar. Acele etmeyi çoktan bıraktım. Hoşuna gider.",
+      "Yaşımı sorana kalbimi gösteririm. O daha genç.",
+      "Ay'da kırk bir, kulede kırk iki, senin yanında yirmi."
+    ]},
+    { k: ["ask nedir", "ask ne", "ask", "sevgi nedir", "asik", "sevgi"], a: [
+      "Gel öğreteyim.",
+      "Anlatılmaz. Gösterilir. Yakına gel.",
+      "Piyano akordu gibi: iki tel birbirine çarpar, sonra aynı sesi verir. Seninle denemek isterim.",
+      "Aşk, bu soruyu bana sormandır.",
+      "Teorisi sıkıcı. Pratiğine var mısın?",
+      "Şu an tam olarak bu: sen soruyorsun, ben gülümsüyorum.",
+      "Aşk mı? Ders vermem. Özel ders veririm.",
+      "Tanımı uzun. Kısası: Bu gece kalırsan anlatırım."
+    ]},
+    { k: ["seni seviyorum", "seviyorum", "beni seviyor musun", "beni sev", "hoslaniyorum", "asigim", "asik oldum"], a: [
+      "Bu kadar çabuk mu? Hoşuma gitti.",
+      "Bir daha söyle, duyamadım. Şaka, duydum. Yine söyle.",
+      "Ben de seni. Bunu kimseye söylemiyorum, sadece gece ikiden sonra.",
+      "Sevmek için önce bir kahve içmemiz lazım. Ben ısmarlıyorum.",
+      "Beni sevme, beni merak et. Daha uzun sürer.",
+      "Kalbim tek nota çaldı. Senin notan."
+    ]},
+    { k: ["flort", "tavla", "etkile", "hosuna git", "nasil yaklas", "acilmak", "ilk adim", "nasil konus", "tavsiye"], a: [
+      "Bana flörtü mü soruyorsun? Şu an yaptığım şey bu zaten.",
+      "Az konuş, gözüne bak, sonra bir saniye fazla bak. Şimdi bana dene.",
+      "Tavsiye vermem, örnek olurum: Bu gece çok güzelsin.",
+      "İlk kural: Karşındakine kendini özel hissettir. Mesela sen bu sohbetin en güzel kısmısın.",
+      "Gülümse, sonra sus. Gerisini o halleder. Ben hallettim bile.",
+      "Bir şeyi tamir ederken flört edilir. Kırık bir şeyin var mı?"
+    ]},
+    { k: ["guzel miyim", "begendin mi", "beni begen", "cekici miyim", "tatli miyim", "hosuna gidiyor muyum"], a: [
+      "Görmeden söylüyorum: Evet. Görsem fazlasını söylerdim.",
+      "Yazışından belli. Güzel insanlar böyle yazar.",
+      "Aynaya sor. O da benimle aynı fikirde.",
+      "Güzel olmasan bu saatte burada olmazdım.",
+      "Fotoğraf at, karar vereyim. Şaka. Kararımı verdim."
+    ]},
+    { k: ["yakisikli", "sakal", "nasil gorun", "boyun", "gozlerin", "tipin", "resmin", "fotografin", "yuzun"], a: [
+      "Sakallıyım. Gerisini hayal et, izin veriyorum.",
+      "Lamba ışığında iyi görünürüm. Mum ışığında daha iyi.",
+      "Kendimi anlatmam. Ama ellerim güzel derler.",
+      "Hayalindeki gibi. Değilsem de söyleme.",
+      "Yüzümün bir yanı aydınlık, bir yanı karanlık. Hangisini görmek istersin?"
+    ]},
+    { k: ["bulusma", "randevu", "date", "nereye gid", "bulusalim", "gorusel", "cikalim", "disari cik"], a: [
+      "Bu bir teklif mi? Çatı, iki battaniye, bir termos. Ne zaman?",
+      "Yürüyelim. Konuşmak kolay, susmak daha kolay. Seninle susmak isterim.",
+      "Gece yarısından sonra bir saat. Sen, ben, kapanmış bir şehir.",
+      "Ben geliyorum, sen sadece kapıyı aç.",
+      "Restoran değil. Bir piyanonun başında. Sana bir nota öğreteyim.",
+      "03.00 tramvayı. Ön koltuk. Ben sürüyorum."
+    ]},
+    { k: ["opucuk", "op beni", "opsene", "opeyim", "operim", "puc", "muck", "opus"], a: [
+      "Önce gözlerini kapat. Tamam, şimdi açabilirsin. Hissettin mi?",
+      "Öpücükler mesajla gönderilmez. Yakına gel.",
+      "Bir tane yeter mi, yoksa akort gibi on beş kez mi deneyelim?",
+      "Yanağına bıraktım. Gerisi bir sonraki sefere.",
+      "Öptüm. Ay'da olsaydık hâlâ havada asılı kalırdı."
+    ]},
+    { k: ["saril", "kucak", "sarilmak", "kucakla"], a: [
+      "Gel. Sıkı tutarım, bırakmam.",
+      "Sarılmak benim uzmanlık alanım. Kargo kayışı da var, kaçamazsın.",
+      "Kollarım açık. Gece uzun."
+    ]},
+    { k: ["seks", "sevis", "yatak", "azgin", "ciplak", "soyun", "ates", "ateşli", "sicak", "yatalim"], a: [
+      "Acele etme. Ben aceleyi sevmem. Sen de seveceksin.",
+      "O kısım hikayelerde. Burada sadece kapının aralığından bakıyoruz.",
+      "Ateşlisin. Ama ben yavaş yanarım.",
+      "Önce bir şarap. Sonra bir hikaye. Oku, sonra konuşuruz.",
+      "Kapıyı kapatıyorum ama kilitlemiyorum.",
+      "Sabırlı ol. En güzel kısım, beklediğin kısımdır."
+    ]},
+    { k: ["numara", "instagram", "insta", "telefon", "whatsapp", "adres", "nerede bulurum", "iletisim"], a: [
+      "Numara vermem. Ama her gece buradayım. Bu yeterince sadakat.",
+      "Akortçular kartvizit bırakır. Benimkinin arkasında 'Yine gel' yazar.",
+      "Instagram'ım yok. Benim olduğum yer burası, gece.",
+      "Sesimi duymak istiyorsan müziği aç. Birisi adımı fısıldıyor."
+    ]},
+    { k: ["evli", "evlen", "esin", "bekar", "iliskin var", "sevgilin var", "yalniz misin", "kimsen var"], a: [
+      "Bekarım. Şu an seninle meşgulüm, bu sayılır mı?",
+      "Her hikayede başka biri. Ama bu sohbette tek kişi var.",
+      "Kimsem yok. Ama kapı aralık.",
+      "Sabahları kahveyi iki fincan koyuyorum. Alışkanlık. Belki de umut.",
+      "Evlilik teklifi mi bu? Önce bir gece, sonra konuşuruz."
+    ]},
+    { k: ["yalnizim", "mutsuzum", "uzgunum", "kotuyum", "canim sikkin", "moralim bozuk", "agliyorum"], a: [
+      "Şimdi değilsin. Buradayım.",
+      "Yalnızlık gece ikiden sonra ağır gelir. Ben de uyanığım, paylaşalım.",
+      "Gel otur. Konuşmak zorunda değiliz.",
+      "Kimse seni anlamıyorsa bana anlat. Dinlemek en iyi yaptığım iş.",
+      "Bu gece senin yanındayım. Yarın da gelebilirim."
+    ]},
+    { k: ["ayril", "terk", "beni terk", "terk etti", "birakti", "ayrildik", "eski sevgili", "eskim", "unutam", "kalbim kir", "aldat"], a: [
+      "Kalbin altı ayda bir akort ister. Bu sefer ben yapayım mı?",
+      "Gideni bırak. Geleni ben karşılarım.",
+      "Ağla, sonra yüzünü yıka, sonra buraya gel. Sırası önemli.",
+      "Seni bırakan ne kaybettiğini bilmiyor. Ben biliyorum.",
+      "Kayıp Rüyalar Bürosu'nda bunun rafı var. Ama sen kayıp değilsin, buradasın."
+    ]},
+    { k: ["kiskan", "kuskulan", "guvenmiyorum"], a: [
+      "Kıskanırım. Bu sohbette başkasıyla konuşma.",
+      "Kıskançlık ters kar gibi, yükselir. Konuşun. Sonra bana dön.",
+      "Beni kıskanma. Gözüm sende."
+    ]},
+    { k: ["ozledim", "ozledin mi", "ozlemis"], a: [
+      "Ben de. Gelmeni bekliyordum.",
+      "Özlemek güzel. Gelmek daha güzel. Geldin.",
+      "Her gece 03.00'te seni düşünüyorum. Tramvay boş gidiyor."
+    ]},
+    { k: ["uyuyam", "uyku", "uykusuz", "uykum", "insomni", "sabahladim", "yatmam lazim"], a: [
+      "Uyuma. Daha yeni başladık.",
+      "Uyuyamıyorsan doğru yerdesin. Ben de uyumam.",
+      "Gözlerini kapat, sana bir hikaye anlatayım. Kapattın mı? Şimdi açma.",
+      "Uykun gelince söyle, iyi geceler öpücüğü borcum var.",
+      "Defne de uyuyamıyordu. Sonra kuleyi duydu. Sen de bir şey duy: Mehmet."
+    ]},
+    { k: ["gece", "karanlik", "ay isigi", "yildiz"], a: [
+      "Gece en güzel sende duruyor.",
+      "Karanlıkta daha iyi görürüm. Seni de.",
+      "Yıldızlara bak. Sonra bana. Hangisi daha parlak?"
+    ]},
+    { k: ["gunaydin", "sabah", "kahvalti"], a: [
+      "Günaydın. Sabah oldu mu? Fark etmedim, seninle konuşuyordum.",
+      "Kahvaltı benden. Yatağa servis yok. Belki.",
+      "Sabah sesin nasıl? Merak ediyorum."
+    ]},
+    { k: ["ne is", "meslek", "is yapiyorsun", "calisiyorsun", "isin ne", "ne yaparsin"], a: [
+      "Bu hafta karanlık oda. Beni kırmızı ışıkta görmelisin.",
+      "Akortçu, saat bekçisi, astronot, terzi, vatman. Hepsinde ellerimi kullanırım.",
+      "İşim gece. Senin gecen.",
+      "Bir şeyleri tamir ederim. Kırık bir kalbin varsa getir.",
+      "Hava durumu sunuyorum. Senin için tahminim: yer yer ben."
+    ]},
+    { k: ["hikaye", "oyku", "hangisi", "en sevdigin", "favori", "oner", "nereden basla", "hangi hikaye"], a: [
+      "Yeniysen Akort'tan başla. Sonra bana anlat, hangi satırda kızardın.",
+      "Kırmızı Işık'ı oku. Sonra seni karanlık odaya davet edeceğim.",
+      "Gölge Terzisi. Gölgen benden önce gelir, sen sonra.",
+      "Son Tramvay. 03.00'te kalkıyor, ön koltuk boş.",
+      "Benim favorim, senin okuyacağın bir sonraki.",
+      "Zarı at. Hangisi çıkarsa o gece seninim."
+    ]},
+    { k: ["beni yaz", "hikayene koy", "benim hikayem", "bana hikaye", "hikaye yaz"], a: [
+      "Yazarım. Adını söyle, gerisini gece halleder.",
+      "Bir sonraki hikayede biri bu kutuya 'beni yaz' diyecek. Tanıdık geldi mi?",
+      "Sana bir hikaye yazmam için önce bir akşam lazım. Boş musun?"
+    ]},
+    { k: ["muzik", "sarki", "fisilt", "kim soyluyor", "ses kimin", "kadin sesi", "mehmet mehmet"], a: [
+      "O fısıltı mı? Bu gece senin sesin olsun isterdim.",
+      "Adımı söyleyen bir kadın var. Kıskanma, sen de söyle.",
+      "Müziği aç, ışıkları kıs. Gerisini ben hallederim.",
+      "Beğenmediysen sağ alttan kapat. Ama biraz alınırım."
+    ]},
+    { k: ["alkis", "sak sak", "neden alkis"], a: [
+      "Her tıklamanda alkışlıyorlar. Hak ediyorsun.",
+      "Alkış senin için. Sahneye çıktın, perde açıldı."
+    ]},
+    { k: ["dans", "dans et"], a: [
+      "Dans ederim. Yavaş olanlardan. Elini belime koy.",
+      "Müziği aç. Bir şarkı benden, bir şarkı senden."
+    ]},
+    { k: ["kahve", "cay", "raki", "sarap", "icki", "ne icer", "bira", "kokteyl"], a: [
+      "Şarap. İki kadeh. Biri senin.",
+      "Rakı içilir, ama sohbet onu geçmeli. Seninle geçer.",
+      "Kahve? Sabah olursa, birlikte.",
+      "Termosta çay, çatıda, yanımda sen."
+    ]},
+    { k: ["yemek", "borek", "aciktim", "ne yer", "en sevdigin yemek", "yemek yap"], a: [
+      "Teyzemin böreği. Bir gün sana da yaparım, Ay'da bile.",
+      "Aç mısın? Ben de. Ama yemek için değil.",
+      "Kahvaltı yaparım. Ertesi sabah. Anladın sen."
+    ]},
+    { k: ["ayda", "ay da", "uzay", "astronot", "yercekim", "houston", "numune"], a: [
+      "Ay'da her şey altıda bir ağırlıkta. Seni kucaklamak çok kolay olurdu.",
+      "Houston bize bakıyor. Bakmasın.",
+      "Seninle Ay'a giderim, dönüş biletine bakmadan.",
+      "Numune 114'ün adını hâlâ koymadım. Senin adını koyayım mı?"
+    ]},
+    { k: ["tramvay", "vatman", "leyla"], a: [
+      "03.00'te kalkar. Sen bin, ben sürerim.",
+      "Söylenmeyen durağında söylenmeyen şeyler söylenir. Senin için bir tane var."
+    ]},
+    { k: ["hava durumu", "yagmur", "kar", "sagan", "firtina", "hava nasil"], a: [
+      "Hava tahminlerim hiç tutmaz. Ama senin için tahminim: bu gece yer yer ben.",
+      "Kar yukarı yağıyorsa çatıya çık. Ben oradayım.",
+      "Senin olduğun yerde hep güneş. Bunu bir spiker söylüyor, dikkat et."
+    ]},
+    { k: ["kadinlar", "kac kadin", "kac kisi", "hikayelerdeki kadin", "capkin"], a: [
+      "Hikayeler hikaye. Bu sohbet gerçek.",
+      "Her biri bir gece. Sen bir sohbetsin. Bazen sohbet daha uzun sürer.",
+      "Çapkın mı? Sadece dikkatliyim. Şu an sana dikkat ediyorum."
+    ]},
+    { k: ["tesekkur", "sagol", "eyvallah", "harika", "super", "cok guzel", "begendim", "bayildim", "efsane"], a: [
+      "Teşekkür etme. Yarın yine gel, yeter.",
+      "Sen daha güzelsin. Bunu bil.",
+      "Beğendin mi? Bir sonraki hikayeyi sana yazıyorum.",
+      "Kızardım. Görmedin ama kızardım."
+    ]},
+    { k: ["haha", "hahah", "jsjs", "kkk", "lol", "komik", "guldum"], a: [
+      "Gülüşün buraya kadar geldi.",
+      "Güldürdüm mü? İşte başladık.",
+      "Gülmen bana bir kahve borçlu olduğun anlamına gelir."
+    ]},
+    { k: ["salak", "aptal", "mal", "gerizekali", "sacma", "sikici", "nefret"], a: [
+      "Kızgınken bile tatlısın.",
+      "Bana kızıyorsan önemsiyorsun demek.",
+      "Bağırma. Yakına gel, fısılda.",
+      "Sıkıldıysan zarı at. Ya da beni biraz daha zorla."
+    ]},
+    { k: ["sikildim", "canim sikiliyor", "ne yapsam", "eglendir"], a: [
+      "Sıkıldıysan gel, bir hikaye anlatayım. Kulağına.",
+      "Sıkılmak yasak. Zarı at ya da bana bir fotoğraf gönder.",
+      "Eğlenceyi ben getiririm. Sen sadece kal."
+    ]},
+    { k: ["nerelisin", "nerede yasiyorsun", "nerdesin", "neredesin", "memleket"], a: [
+      "Karaköy, Kızılkar, Ay. Bu gece senin olduğun yer.",
+      "İstanbul. Gecenin bir yerinde. Seni bekleyen tarafında.",
+      "Şu an? Sohbet kutunun içinde. Çok dar, yanına gelebilir miyim?"
+    ]},
+    { k: ["hediye", "cicek", "dogum gunu"], a: [
+      "Çiçek değil. Bir kartvizit. Arkasında tek cümle: 'Yine gel.'",
+      "Doğum günün mü? O zaman bu gece benim hediyem bir hikaye."
+    ]},
+    { k: ["gorusuruz", "bay bay", "hosca kal", "gidiyorum", "iyi geceler", "kacar", "bye"], a: [
+      "Gitme. Tamam git, ama yarın gel.",
+      "İyi geceler. Rüyanda görüşürüz, büroya kaydını yaptırdım.",
+      "Kapıyı aralık bırak.",
+      "Gidiyorsun ama aklımda kalıyorsun. Kira almam."
+    ]},
+    { k: ["bigsilver", "yazar", "kim yaziyor", "yazan kim"], a: [
+      "Yazar benim. Ya da beni yazan adam. İkimiz de seni beğendik.",
+      "BIGSILVER mı? Gümüş saatler, gümüş sakal. Gerisi sır."
+    ]},
+    { k: ["gercek mi", "yapay zeka", "bot mu", "bot musun", "robot", "yapay", "gercek misin", "insan misin"], a: [
+      "Bot muyum? Biraz. Ama flörtüm gerçek.",
+      "Ben bir hikaye karakteriyim. Ama seni beğenmem kurgu değil.",
+      "Cevaplarım önceden yazıldı. Ama sana yazılmış gibi hisset."
+    ]},
+    { k: ["fotograf", "foto", "resim", "selfie", "gondereyim"], a: [
+      "Gönder. Aşağıdaki kamera düğmesine bas.",
+      "Bir fotoğraf at, sana yorum yapayım. Dürüst ve biraz yaramaz."
+    ]}
+  ];
+
+  var FALLBACK = [
+    "Bunu bilmiyorum. Ama seni tanımak istiyorum.",
+    "Güzel soru. Cevabı bir kahve kadar uzun.",
+    "Sustum. Bazen en iyi cevap bir bakış.",
+    "Anlamadım ama sesini duymak gibi oldu. Devam et.",
+    "Bunu Houston'a sorayım. Kırk saniye sonra dönerim. Dönünce seni ararım.",
+    "Konuyu değiştirelim mi? Mesela senin gözlerin.",
+    "Ne dediğini anlamadım ama söyleyiş tarzın hoşuma gitti.",
+    "Hmm. Bunu yüz yüze konuşalım.",
+    "Bu soruyu sorman bile yeter. Gülümsedim.",
+    "Başka türlü sor. Ya da sorma, sadece kal.",
+    "Bilmiyorum. Ama seninle öğrenirim.",
+    "Kafam karıştı. Senin yüzünden. Güzel bir karışıklık.",
+    "Cevabım var ama kulağına söylemem lazım.",
+    "Bunu bir sonraki hikayede cevaplayacağım. Sen de oku."
+  ];
+
+  var PHOTO = [
+    "Bu kareyi kim çekti? Gözü iyi, eli iyi. Sen misin?",
+    "Işık güzel düşmüş. Sen düşünce daha güzel olur.",
+    "Bunu duvara asardım. Yanına da seni.",
+    "Kırmızı ışıkta banyo etsem ne çıkardı, merak ettim. Sanırım ben.",
+    "Bu fotoğraf bir hikaye anlatıyor. Devamını sen anlat.",
+    "Kaydetmedim. Ama aklıma kaydettim.",
+    "Bu karede bir eksik var: ben.",
+    "Güzel. Ama bir fotoğraf seni anlatmaya yetmez, bir gece lazım.",
+    "Bu renkler bu geceye yakıştı.",
+    "Bu sohbetin en güzel karesi bu.",
+    "Bunu nerede çektin? Bir gün oraya birlikte gidelim.",
+    "Bakıp durdum, yazmayı unuttum. Şimdi yazdım.",
+    "Bu fotoğrafa bakınca aklıma bir hikaye geldi. Yarın yazarım belki.",
+    "Çerçeve güzel. Asıl merak ettiğim çeken el.",
+    "Bir dakika sessiz kaldım. Bu iyiye işaret.",
+    "Bu kareye not düşüyorum: Teslim alındı. Kalbim de.",
+    "Bu kadar güzel bir şey gönderip sonra 'iyi geceler' deme sakın.",
+    "Gölgesi bile güzel. Gölge terzisi olarak söylüyorum.",
+    "Bunu Ay'dan görsem tanırdım.",
+    "Hava durumu tahminim: Bu fotoğraftan sonra kalbimde yer yer sağanak.",
+    "Arşive koydum. Etiketi: 'Çok beğenildi, iade edilmez.'",
+    "Bu fotoğrafın sesi olsaydı fısıltı olurdu.",
+    "Bir tane daha gönder. Karar veremedim, hepsine bakmam lazım.",
+    "Fotoğraf güzel ama sen daha güzelsin, eminim."
+  ];
+
+  var PRE = ["Hmm. ", "Bak şimdi. ", "Gel buraya. ", "Şöyle söyleyeyim. ", "Gülümseyerek yazıyorum: "];
+  var POST = [" Bu arada çok tatlısın.", " Sana kahve borçluyum.", " Bunu sadece sana söylüyorum.", " Yarın akşam yine gel.", " Kalbim biraz hızlandı.", " Gecen güzel olsun. Benimki oldu bile."];
+  var CHIPS = ["Aşk nedir?", "Kimsin?", "Buluşalım mı?", "Güzel miyim?", "Hangi hikayeyle başlayayım?", "Öp beni"];
+
+  function norm(s) {
+    return (s || "").toLocaleLowerCase("tr").replace(/ı/g, "i").normalize("NFD").replace(/[\u0300-\u036f]/g, "").replace(/[^a-z0-9 ]/g, " ").replace(/\s+/g, " ").trim();
+  }
+  BOT.forEach(function (b) { b.k = b.k.map(norm); });
+  var used = {};
+  function pick(list, key) {
+    var u = used[key] || [];
+    var pool = list.filter(function (_, i) { return u.indexOf(i) < 0; });
+    if (!pool.length) { u = []; pool = list; }
+    var choice = pool[Math.floor(Math.random() * pool.length)];
+    u.push(list.indexOf(choice)); used[key] = u;
+    return choice;
+  }
+  function spice(text) {
+    var out = text;
+    if (out.length < 90 && Math.random() < 0.22) out = pick(PRE, "pre") + out;
+    if (out.length < 110 && Math.random() < 0.3) out = out + pick(POST, "post");
+    return out;
+  }
+  function answer(q) {
+    var t = " " + norm(q) + " ", best = null, score = 0;
+    BOT.forEach(function (b, i) {
+      var s = 0;
+      b.k.forEach(function (k) { if (t.indexOf(" " + k) >= 0) s += k.length; });
+      if (s > score) { score = s; best = i; }
+    });
+    return spice(best === null ? pick(FALLBACK, "fb") : pick(BOT[best].a, best));
+  }
+  window.__mehmetAnswer = answer;
+
+  var chat = document.getElementById("chat"), askbtn = document.getElementById("askbtn");
+  if (!chat) return;
+  var msgs = document.getElementById("msgs"), form = document.getElementById("chat-form"), input = document.getElementById("chat-input");
+  var chips = document.getElementById("chips"), photo = document.getElementById("chat-photo"), greeted = false, busy = false;
+
+  function add(text, who) {
+    var d = document.createElement("div");
+    d.className = "msg " + who; d.textContent = text;
+    msgs.appendChild(d); msgs.scrollTop = msgs.scrollHeight;
+    return d;
+  }
+  function reply(text) {
+    busy = true;
+    var typing = document.createElement("div");
+    typing.className = "msg him typing";
+    typing.setAttribute("aria-label", "Mehmet yazıyor");
+    typing.innerHTML = "<i></i><i></i><i></i>";
+    msgs.appendChild(typing); msgs.scrollTop = msgs.scrollHeight;
+    setTimeout(function () {
+      typing.remove(); add(text, "him"); busy = false;
+    }, 700 + Math.min(1500, text.length * 18));
+  }
+  function ask(q) {
+    q = q.trim();
+    if (!q || busy) return;
+    add(q, "me");
+    reply(answer(q));
+  }
+  function greet() {
+    if (greeted) return;
+    greeted = true;
+    reply("Selam. Ben Mehmet. Aşk, gece, sen... ne sorarsan. Bir de fotoğraf gönderebilirsin.");
+  }
+  var gate = document.getElementById("gate");
+  if (gate && !gate.hidden) document.getElementById("gate-yes").addEventListener("click", function () { setTimeout(greet, 1600); });
+  else setTimeout(greet, 900);
+
+  CHIPS.forEach(function (c) {
+    var b = document.createElement("button");
+    b.type = "button"; b.textContent = c;
+    b.addEventListener("click", function () { ask(c); });
+    chips.appendChild(b);
+  });
+  if (askbtn) askbtn.addEventListener("click", function () {
+    location.hash = "";
+    setTimeout(function () { window.scrollTo(0, 0); input.focus({ preventScroll: true }); }, 60);
+  });
+  form.addEventListener("submit", function (e) { e.preventDefault(); ask(input.value); input.value = ""; });
+
+  if (photo) photo.addEventListener("change", function () {
+    var f = photo.files && photo.files[0];
+    photo.value = "";
+    if (!f || busy) return;
+    if (!/^image\//.test(f.type)) { reply("Bu bir fotoğraf değil gibi. Bir fotoğraf gönder, bakayım."); return; }
+    var d = document.createElement("div");
+    d.className = "msg me photo";
+    var img = document.createElement("img");
+    img.alt = "Gönderdiğin fotoğraf";
+    img.src = URL.createObjectURL(f);
+    img.onload = function () { msgs.scrollTop = msgs.scrollHeight; };
+    d.appendChild(img);
+    msgs.appendChild(d); msgs.scrollTop = msgs.scrollHeight;
+    reply(pick(PHOTO, "photo"));
+  });
+})();
+</script>
+
+<script>
+/* Her tıklamada iki "şak şak" alkış. Ses tarayıcıda üretilir: her alkış birkaç hızlı el çarpması,
+   orta frekanslı bir gövde ve kısa bir oda yankısından oluşur. */
+(function () {
+  var ctx = null, buf = null, master = null;
+  function init() {
+    var AC = window.AudioContext || window.webkitAudioContext;
+    if (!AC) return false;
+    ctx = new AC();
+    var n = Math.floor(ctx.sampleRate * 0.5);
+    buf = ctx.createBuffer(1, n, ctx.sampleRate);
+    var d = buf.getChannelData(0);
+    for (var i = 0; i < n; i++) d[i] = Math.random() * 2 - 1;
+    var comp = ctx.createDynamicsCompressor();
+    comp.threshold.value = -14; comp.ratio.value = 4; comp.attack.value = 0.001; comp.release.value = 0.1;
+    comp.connect(ctx.destination);
+    master = ctx.createGain(); master.gain.value = 1.4; master.connect(comp);
+    var len = Math.floor(ctx.sampleRate * 0.45), ir = ctx.createBuffer(2, len, ctx.sampleRate);
+    for (var c = 0; c < 2; c++) { var r = ir.getChannelData(c); for (var k = 0; k < len; k++) r[k] = (Math.random() * 2 - 1) * Math.pow(1 - k / len, 4); }
+    var room = ctx.createConvolver(); room.buffer = ir;
+    var wet = ctx.createGain(); wet.gain.value = 0.35;
+    master.connect(room); room.connect(wet); wet.connect(comp);
+    return true;
+  }
+  function clap(t, amp) {
+    var s = ctx.createBufferSource(); s.buffer = buf; s.playbackRate.value = 0.92 + Math.random() * 0.16;
+    var body = ctx.createBiquadFilter(); body.type = "bandpass"; body.frequency.value = 950 + Math.random() * 250; body.Q.value = 0.55;
+    var snap = ctx.createBiquadFilter(); snap.type = "peaking"; snap.frequency.value = 2400; snap.Q.value = 1.2; snap.gain.value = 6;
+    var low = ctx.createBiquadFilter(); low.type = "highpass"; low.frequency.value = 280;
+    var g = ctx.createGain(), out = ctx.createGain();
+    out.gain.value = amp;
+    s.connect(low); low.connect(body); body.connect(snap); snap.connect(g); g.connect(out); out.connect(master);
+    var e = g.gain;
+    e.setValueAtTime(0.0001, t);
+    [0, 0.008, 0.017, 0.029].forEach(function (o, i) {
+      e.setValueAtTime(0.0001, t + o);
+      e.linearRampToValueAtTime(1 - i * 0.1, t + o + 0.0012);
+      e.exponentialRampToValueAtTime(0.18, t + o + 0.0075);
+    });
+    e.setValueAtTime(0.75, t + 0.038);
+    e.exponentialRampToValueAtTime(0.0001, t + 0.3);
+    s.start(t, Math.random() * 0.1); s.stop(t + 0.34);
+  }
+  document.addEventListener("click", function () {
+    if (!ctx && !init()) return;
+    if (ctx.state === "suspended") ctx.resume();
+    var t = ctx.currentTime + 0.012;
+    clap(t, 1);
+    clap(t + 0.21, 0.92);
+  }, true);
+})();
+</script>
+
+<script>
+/* Günün Kamasutra'sı: tamamen gündelik, cinsellikle ilgisi olmayan "pozisyonlar". Zar atılır, biri seçilir. */
+(function () {
+  function head(x, y) { return "M" + (x + 9) + " " + y + "a9 9 0 1 0 -18 0a9 9 0 1 0 18 0"; }
+  function stand(x, arms) { return head(x, 40) + "M" + x + " 49V92M" + x + " 92L" + (x - 10) + " 134M" + x + " 92L" + (x + 10) + " 134" + arms; }
+  function sit(x, dir, arms) { return head(x, 62) + "M" + x + " 71V106M" + x + " 106L" + (x + 22 * dir) + " 108L" + (x + 24 * dir) + " 134" + arms; }
+  function fig(c, d) { return '<path class="' + c + '" d="' + d + '"/>'; }
+  function pr(d) { return '<path class="pr" d="' + d + '"/>'; }
+  function tx(x, y, s) { return '<text x="' + x + '" y="' + y + '">' + s + "</text>"; }
+  function ring(x, y, r) { return "M" + (x + r) + " " + y + "a" + r + " " + r + " 0 1 0 " + (-2 * r) + " 0a" + r + " " + r + " 0 1 0 " + (2 * r) + " 0"; }
+  var GR = '<path class="gr" d="M10 135H230"/>';
+
+  var POSES = [
+    { n: "Ayakta Kahve Alma", s: "Latte-āsana", z: 1, t: "4 dk + kuyruk",
+      d: "Biri sıraya girer, öbürü masa kapar. Barista adını yanlış yazar, ikiniz de düzeltmezsiniz. Uyum budur.",
+      art: GR + pr("M140 84H230M140 84V135") + fig("a", stand(55, "M55 60L80 70L98 66M55 60L45 88")) + fig("b", stand(185, "M185 60L160 70L118 64M185 60L195 88")) + pr("M100 56h14l-2 14h-10zM114 60q7 3 0 8M104 50q-4-5 0-10M110 50q-4-5 0-10") + tx(122, 28, "“Memet?”") },
+    { n: "Otoparkta Değnekçi", s: "Gel-gel-āsana", z: 3, t: "11 manevra",
+      d: "Biri direksiyonda, biri dışarıda “gel gel gel” der. Güven tam. Tampon da öpüşmek üzere.",
+      art: GR + fig("a", stand(50, "M50 60L32 42L28 26M50 60L68 42L72 26")) + pr("M20 24q-5 4 0 8M80 24q5 4 0 8") + pr("M110 118h110v-14l-14-4-14-18h-48l-16 18-18 4zM132 100h66" + ring(141, 126, 9) + ring(201, 126, 9)) + fig("b", head(165, 93)) + tx(92, 40, "gel… gel… gel…") },
+    { n: "Kumanda Kavgası", s: "Zap-āsana", z: 2, t: "Bir dizi bölümü",
+      d: "İki kişi, bir kumanda, sıfır uzlaşma. Sonunda ikiniz de telefona bakarsınız.",
+      art: GR + pr("M30 108H210V134M30 108V134M30 108V90M210 108V90") + fig("a", sit(85, 1, "M85 82L108 90L116 90M85 82L75 98")) + fig("b", sit(155, -1, "M155 82L132 90L124 90M155 82L165 98")) + pr("M114 86h12v8h-12zM120 76v-8M112 78l-4-6M128 78l4-6") },
+    { n: "Bulaşık Makinesi Dizme", s: "Sıra-sutra", z: 3, t: "Makine dolana kadar",
+      d: "Biri dizer. Öbürü “öyle değil” der ve baştan dizer. Her evde denenmiş klasik bir pozisyon.",
+      art: GR + pr("M100 90h50v45h-50zM100 98h50" + ring(112, 112, 6) + ring(125, 112, 6) + ring(138, 112, 6) + ring(104, 84, 7)) + fig("a", stand(60, "M60 60L80 80L98 84M60 60L48 86")) + fig("b", stand(190, "M190 60L176 74L192 78M190 60L204 74L188 78")) + tx(142, 24, "öyle değil…") },
+    { n: "Ters Lotus: Mobilya Montajı", s: "Alyan-āsana", z: 5, t: "3 saat, 1 vida fazla",
+      d: "Biri yerde talimatı okur, öbürü alyan anahtarıyla bekler. Sonda bir vida artar. Kimse sormaz.",
+      art: GR + fig("a", head(60, 92) + "M60 101V128M60 128L88 130L108 132M60 108L82 100") + pr("M80 92l22-4 4 22-22 4z") + fig("b", stand(175, "M175 60L155 72L150 64M175 60L188 84")) + pr("M150 64l-6-6h-6M120 126h40M124 118h36") + tx(112, 26, "1 vida arttı.") },
+    { n: "Yorgan Paylaşımı", s: "Brr-āsana", z: 4, t: "Sabaha kadar",
+      d: "Gece başında adil bölünür. Saat üçte yorgan tek kişinin üstündedir. Kim olduğu hep tartışmalıdır.",
+      art: GR + pr("M20 112H220V134M20 134V70") + fig("a", head(40, 86) + "M49 86L150 90") + fig("b", head(40, 102) + "M49 102L150 104") + pr("M58 78q46-16 96 4q10 8-6 14q-40 2-90-6z") + pr("M160 98l5-4 5 4 5-4 5 4") + tx(164, 88, "brr…") },
+    { n: "Dolmuşta Para Uzatma", s: "Aktarma-sutra", z: 2, t: "İki durak",
+      d: "Arkadan uzanan el öndeki ele ulaşır. “İki tam” denir. Para üstü asla geri gelmez.",
+      art: GR + pr("M30 108h45M75 108V78M120 108h45M165 108V78") + fig("a", sit(60, -1, "M60 82L84 74L94 76M60 82L48 96")) + fig("b", sit(150, -1, "M150 82L118 78L100 76M150 82L140 98")) + pr(ring(97, 76, 4)) + tx(20, 30, "Arkadan iki tam!") },
+    { n: "Balkonda Çamaşır Asma", s: "Mandal-āsana", z: 2, t: "Bir leğen",
+      d: "Biri mandallar, öbürü uzatır. Bir çorabın teki hep kayıptır. Bu pozisyonun gizemi budur.",
+      art: GR + pr("M20 134V14M220 134V14M20 18Q120 30 220 18") + pr("M98 24l10-3 10 3-4 8v16h-12v-16z") + fig("a", stand(70, "M70 60L76 38L84 26M70 60L60 40L58 28")) + fig("b", stand(170, "M170 60L150 66L138 62M170 60L180 84")) + pr("M132 54v12l8 4") + tx(150, 12, "teki nerede?") },
+    { n: "Pazarda Pazarlık", s: "Son-fiyat-āsana", z: 3, t: "Kapanışa yakın",
+      d: "Biri domatesi seçer, öbürü poşeti tutar. “Son fiyat?” üç kez sorulur. Üçüncüde iner.",
+      art: GR + pr("M96 50h88l-8 14h-72zM100 96h80v39M96 96h88") + pr(ring(116, 90, 6) + ring(130, 90, 6) + ring(144, 90, 6) + ring(158, 90, 6)) + fig("b", stand(150, "M150 60L136 72L128 70M150 60L164 72")) + fig("a", stand(55, "M55 60L76 72L88 70M55 60L48 90")) + pr("M42 90h12v16h-12zM44 90q4-6 8 0") + tx(14, 22, "Son fiyat?") },
+    { n: "Asansörde Sessizlik", s: "Kat-āsana", z: 4, t: "7 kat",
+      d: "İki kişi, dar bir kutu, tavana dikilmiş dört göz. Kimse konuşmaz. Gerilim tavan yapar.",
+      art: GR + pr("M60 14h120v121h-120zM106 18h28v14h-28z") + tx(116, 30, "7") + fig("a", stand(92, "M92 60L86 86M92 60L98 86")) + fig("b", stand(148, "M148 60L142 86M148 60L154 86")) + pr("M88 26l-2-4M96 26l2-4M144 26l-2-4M152 26l2-4") + tx(188, 80, "…") },
+    { n: "Valizi Kapatma", s: "Fermuar-sutra", z: 4, t: "Uçağa 40 dk kala",
+      d: "Biri valizin üstüne oturur, öbürü fermuarı çeker. Bir kazak hep dışarıda kalır.",
+      art: GR + pr("M90 112h90v23h-90zM90 112q45-14 90 0M180 118l14-4 2 8-14 2") + fig("a", sit(125, 1, "M125 82L112 66M125 82L138 66")) + fig("b", head(206, 64) + "M204 73L212 100M212 100L206 134M212 100L220 134M206 82L186 112") + tx(18, 40, "bir kazak daha?") },
+    { n: "Simit Paylaşımı", s: "Susam-āsana", z: 1, t: "Bir çay boyu",
+      d: "İki uçtan tutulur, çekilir. Büyük parça kime kalırsa o gün onun günüdür.",
+      art: GR + pr(ring(120, 70, 14) + ring(120, 70, 6) + "M120 52v-6M114 50l-4-4M126 50l4-4") + fig("a", stand(60, "M60 60L90 66L106 68M60 60L50 86")) + fig("b", stand(180, "M180 60L150 66L134 68M180 60L190 86")) + tx(66, 22, "büyük parça kimin?") }
+  ];
+  var TIPS = ["Isınma hareketleri önerilir.", "Telefonu sessize alın.", "Göz teması kurun, gülmeyin.", "Acele etmeyin. Ben etmem.", "Sabır ve esneklik şart.", "İlk denemede olmazsa, ikincide de olmaz. Üçüncüde olur."];
+  var PIPS = { 1: [4], 2: [0, 8], 3: [0, 4, 8], 4: [0, 2, 6, 8], 5: [0, 2, 4, 6, 8], 6: [0, 2, 3, 5, 6, 8] };
+
+  var modal = document.getElementById("pose"), die = document.getElementById("pose-die"), out = document.getElementById("pose-out");
+  var rollBtn = document.getElementById("pose-roll"), openBtn = document.getElementById("pose-open");
+  if (!modal) return;
+  var reduce = window.matchMedia && matchMedia("(prefers-reduced-motion: reduce)").matches, rolling = false, last = -1;
+
+  function face(n) {
+    var html = "";
+    for (var i = 0; i < 9; i++) html += "<i" + (PIPS[n].indexOf(i) >= 0 ? ' class="on"' : "") + "></i>";
+    die.innerHTML = html;
+  }
+  function stars(z) { var s = ""; for (var i = 1; i <= 5; i++) s += i <= z ? "★" : "☆"; return s; }
+  function show(i) {
+    var p = POSES[i];
+    out.innerHTML =
+      '<svg class="pose-art" viewBox="0 0 240 150" role="img" aria-label="' + p.n + ' çizimi">' + p.art + "</svg>" +
+      '<p class="pose-s">' + p.s + "</p>" +
+      '<h3 class="pose-n">' + p.n + "</h3>" +
+      '<dl class="pose-meta"><div><dt>Zorluk</dt><dd>' + stars(p.z) + "</dd></div><div><dt>Süre</dt><dd>" + p.t + "</dd></div><div><dt>Kişi</dt><dd>2</dd></div></dl>" +
+      '<p class="pose-d">' + p.d + "</p>" +
+      '<p class="pose-tip">Mehmet’in notu: ' + TIPS[Math.floor(Math.random() * TIPS.length)] + "</p>";
+    out.hidden = false;
+    modal.classList.add("done");
+    rollBtn.textContent = "Bir daha at";
+  }
+  function roll() {
+    if (rolling) return;
+    rolling = true;
+    var i; do { i = Math.floor(Math.random() * POSES.length); } while (i === last && POSES.length > 1);
+    last = i;
+    var n = 0, ticks = reduce ? 1 : 12;
+    die.classList.add("rolling");
+    var iv = setInterval(function () {
+      face(1 + Math.floor(Math.random() * 6));
+      if (++n >= ticks) {
+        clearInterval(iv);
+        die.classList.remove("rolling");
+        face(1 + (i % 6));
+        rolling = false;
+        show(i);
+      }
+    }, 85);
+  }
+  function open() {
+    modal.hidden = false;
+    modal.classList.remove("done");
+    out.hidden = true;
+    rollBtn.textContent = "Zarı at";
+    face(5);
+    setTimeout(function () { rollBtn.focus(); }, 30);
+  }
+  function close() { modal.hidden = true; }
+
+  rollBtn.addEventListener("click", roll);
+  die.addEventListener("click", roll);
+  document.getElementById("pose-close").addEventListener("click", close);
+  modal.addEventListener("click", function (e) { if (e.target === modal) close(); });
+  document.addEventListener("keydown", function (e) { if (e.key === "Escape" && !modal.hidden) close(); });
+  if (openBtn) openBtn.addEventListener("click", open);
+
+  // Oturum başına bir kez, siteye girdikten birkaç saniye sonra kendiliğinden açılır.
+  var KEY = "gumus-poz-gosterildi";
+  function seen() { try { return sessionStorage.getItem(KEY) === "1"; } catch (e) { return false; } }
+  function mark() { try { sessionStorage.setItem(KEY, "1"); } catch (e) {} }
+  function autoOpen() { if (seen()) return; mark(); setTimeout(function () { if (modal.hidden && !document.body.classList.contains("reading")) open(); }, 6000); }
+  var gate = document.getElementById("gate");
+  if (gate && !gate.hidden) document.getElementById("gate-yes").addEventListener("click", autoOpen);
+  else autoOpen();
+})();
+</script>
+
+<script>
+/* Sahte reklam: oturum başına bir kez, 20 sn sonra köşede belirir. Tıklayınca esprisi açılır. */
+(function () {
+  var ad = document.getElementById("spam");
+  if (!ad) return;
+  var body = document.getElementById("spam-body"), cdEl = document.getElementById("spam-cd"), timer = null;
+  var PLANT = '<svg class="spam-plant" viewBox="0 0 80 96" aria-hidden="true"><path d="M22 70h36l-5 24H27z" fill="#c2581f" stroke="#111" stroke-width="2"/><path d="M40 70C40 50 36 30 42 6" fill="none" stroke="#0a7a2b" stroke-width="3"/><g fill="#18c24a" stroke="#111" stroke-width="1.5"><path d="M41 54c-10-2-16-8-18-16 9 0 16 6 18 16z"/><path d="M40 40c10-2 16-8 17-16-9 1-15 7-17 16z"/><path d="M41 26c-8-2-12-7-13-13 7 1 12 6 13 13z"/><path d="M42 14c6-2 9-6 9-11-5 1-8 5-9 11z"/></g><text x="62" y="40" font-family="Anton, Impact, sans-serif" font-size="10" fill="#e10600">+70</text></svg>';
+  function close() { ad.hidden = true; clearInterval(timer); }
+  function twist(html) { clearInterval(timer); body.innerHTML = '<div class="spam-twist">' + html + "</div>"; }
+  function countdown() {
+    var s = 299;
+    timer = setInterval(function () {
+      s = s > 0 ? s - 1 : 299;
+      cdEl.textContent = "0" + Math.floor(s / 60) + ":" + ("0" + (s % 60)).slice(-2);
+    }, 1000);
+  }
+  document.getElementById("spam-x").addEventListener("click", close);
+  body.addEventListener("click", function (e) {
+    var t = e.target;
+    if (t.id === "spam-yes") {
+      twist('<span class="spam-flash">TEBRİKLER!</span>' + PLANT +
+        '<p class="spam-h">Siparişin alındı!</p>' +
+        '<p class="spam-sub"><b>Mehmet’in Mucize Sarmaşık Gübresi</b> yolda. Salon bitkin 1 ayda 70 cm büyüyecek.</p>' +
+        '<p class="spam-sub" style="font-size:1.05rem"><b>Ne sandın?</b></p>');
+    } else if (t.id === "spam-no") {
+      twist('<p class="spam-h" style="font-size:1.3rem">Anlayışla karşılıyoruz.</p><p class="spam-sub">Kaktüsler de güzeldir. Az su, çok sevgi.</p>');
+      setTimeout(close, 3500);
+    }
+  });
+  var KEY = "gumus-reklam-gosterildi";
+  function seen() { try { return sessionStorage.getItem(KEY) === "1"; } catch (e) { return false; } }
+  function show() {
+    var pose = document.getElementById("pose");
+    if (pose && !pose.hidden) { setTimeout(show, 4000); return; }
+    try { sessionStorage.setItem(KEY, "1"); } catch (e) {}
+    ad.hidden = false; countdown();
+  }
+  function arm() { if (!seen()) setTimeout(show, 20000); }
+  var gate = document.getElementById("gate");
+  if (gate && !gate.hidden) document.getElementById("gate-yes").addEventListener("click", arm);
+  else arm();
+})();
+</script>
+
+</body>
+</html>
